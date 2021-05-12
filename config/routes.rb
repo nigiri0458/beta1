@@ -1,3 +1,48 @@
 Rails.application.routes.draw do
+  namespace :api do
+    get 'events/index'
+    get 'events/show'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  namespace :api do
+    # APPLICATION
+    post 'userAuthentication', to: 'application#user_authentication'
+    
+    # HOME
+    get 'top', to: 'home#top'
+
+    # USERS
+    get 'signup', to: 'users#signup'
+    get 'signupAuth', to: 'users#signup_auth'
+    get 'users/:user_id', to: 'users#show'
+    get 'users/edit', to: 'users#edit'
+    post 'users/update', to: 'users#update'
+    get 'login', to: 'users#login'
+    post 'loginAuth', to: 'users#login_auth'
+
+    post 'logout', to: 'users#logout'
+  
+    # EVENTS
+    get 'events', to: 'events#index'
+    get 'events/:event_id', to: 'events#show'
+
+    # CARTS
+    get 'users/:user_id/cart', to: 'carts#index'
+  
+    # CART_ITEMS
+    post 'events/:event_id/create', to: 'cart_items#create'
+    post 'cart_items/:item_id/changeQuantity', to:'cart_items#change_quantity'
+    post 'cart_items/:item_id/delete', to: 'cart_items#delete'
+
+    # ORDER_HISTORIES
+    get 'order_histories', to: 'order_histories#index'
+    get 'order_histories/:order_id', to: 'order_histories#show'
+    
+    
+    # ORDERS
+    post 'order_histories/:order_id/isPurchased', to: 'orders#is_purchased'
+    post 'orders/create', to: 'orders#create'
+  end
+  
 end

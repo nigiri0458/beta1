@@ -1,4 +1,4 @@
 class CartItem < ApplicationRecord
-    belongs_to :cart
-    belongs_to :event
+    belongs_to :cart, optional: true
+    belongs_to :event, optional: true
 end

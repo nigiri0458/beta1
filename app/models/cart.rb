@@ -1,8 +1,8 @@
 class Cart < ApplicationRecord
-    belongs_to :user
+    belongs_to :user, optional: true
     has_many :events
     has_one :order
     has_many :cart_items
 
-    validates :id, :user_id, presence :true
+    validates :user_id, presence: true
 end

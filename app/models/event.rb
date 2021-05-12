@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-    belongs_to :cart
+    belongs_to :cart, optional: true
 
-    validates :id, :name, :group, :image, :date, :description, :fee, presence :true
+    validates :name, :group, :image, :date, :description, :price, presence: true
 end

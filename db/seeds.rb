@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'date'
+
+3.times do |n|
+    event = Event.new(
+        name: "イベント#{n}",
+        group: "グループ#{n}",
+        image: "image_url",
+        date: DateTime.now,
+        description: "おっぱい",
+        info: "",
+        price: 500+100*n
+    )
+    event.save!
+end
