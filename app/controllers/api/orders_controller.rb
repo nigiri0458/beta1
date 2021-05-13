@@ -14,7 +14,9 @@ class Api::OrdersController < ApplicationController
             isPurchased: false,
             cart_item_id: @cart.cart_item_id
         )
-        order.save
+        if order.save
+            @cart.update(cart_item_id: nil)
+        end
     end
 
 end
