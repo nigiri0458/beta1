@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-    belongs_to :cart, optional: true
+    has_many :cart_items
 
     validates :name, :group, :image, :date, :description, :price, presence: true
 end

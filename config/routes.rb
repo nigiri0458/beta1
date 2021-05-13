@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
     # USERS
     get 'signup', to: 'users#signup'
-    get 'signupAuth', to: 'users#signup_auth'
+    post 'signupAuth', to: 'application#signup_auth'
+    post 'setCurrentUser', to: 'application#set_current_user'
     get 'users/:user_id', to: 'users#show'
     get 'users/edit', to: 'users#edit'
     post 'users/update', to: 'users#update'

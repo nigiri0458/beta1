@@ -1,5 +1,7 @@
 class Api::OrderHistoriesController < ApplicationController
-        # ユーザの注文履歴を表示
+    before_action :user_authentication
+
+    # ユーザの注文履歴を表示
     def index
         order_history = OrderHistory.find_by(user_id: @user.id)
         render json: {
