@@ -2,7 +2,13 @@ class ApplicationController < ActionController::API
     before_action :set_current_user
 
     def set_current_user
-        @user = User.find(session[:user_id])
+        if !(session[:user_id].nil?)
+            @user = User.find(session[:user_id])
+        else
+            @user = nil
+        end
+        
+        
     end
     
     
