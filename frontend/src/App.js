@@ -12,21 +12,37 @@ import {User} from './containers/User';
 import {Top} from './components/Top';
 
 // Router
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 // Material UI
-import AppBar from '@material-ui/core/AppBar';
+import HomeIcon from '@material-ui/icons/Home';
 
-
-
+// CSS
 import './App.css';
+import './styles/Header.css';
 
 function App() {
   return (
     <Router>
-        <AppBar color="default">
-
-        </AppBar>
+        <header>
+          <div className="home-button">
+            <Link to="/top">
+              HomeIcon
+            </Link>
+          </div>
+          <div className="header-right">
+            <div className="header-button">
+              Login
+            </div>
+            <div className="header-button">
+              Sign Up
+            </div>
+            <div className="header-button">
+              Menu Bar
+            </div>
+          </div>
+        </header>
+        
 
         <Switch>
           <Route exact path="/top">
