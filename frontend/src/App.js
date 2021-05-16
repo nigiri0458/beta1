@@ -10,12 +10,16 @@ import {Signup} from './containers/Signup';
 import {User} from './containers/User';
 
 import {Top} from './components/Top';
+import {Header} from './components/Header';
+
 
 // Router
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link, useHistory} from 'react-router-dom';
+
+import { postLogout } from './apis/users';
 
 // Material UI
-import HomeIcon from '@material-ui/icons/Home';
+//import HomeIcon from '@material-ui/icons/Home';
 
 // CSS
 import './App.css';
@@ -24,26 +28,7 @@ import './styles/Header.css';
 function App() {
   return (
     <Router>
-        <header>
-          <div className="home-button">
-            <Link to="/top">
-              HomeIcon
-            </Link>
-          </div>
-          <div className="header-right">
-            <div className="header-button">
-              Login
-            </div>
-            <div className="header-button">
-              Sign Up
-            </div>
-            <div className="header-button">
-              Menu Bar
-            </div>
-          </div>
-        </header>
-        
-
+      <Header />
         <Switch>
           <Route exact path="/top">
             <Top />
@@ -53,9 +38,7 @@ function App() {
             <Events />
           </Route>
 
-          <Route exact path="/events/:event_id">
-            <EventDetails />
-          </Route>
+          <Route exact path="/events/:event_id" render={({match}) => <EventDetails match={match} />} />
 
           <Route exact path="/signup">
             <Signup />

@@ -7,8 +7,6 @@ class ApplicationController < ActionController::API
         else
             @user = nil
         end
-        
-        
     end
     
     

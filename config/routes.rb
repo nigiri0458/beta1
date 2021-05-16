@@ -4,18 +4,13 @@ Rails.application.routes.draw do
   namespace :api do
     # APPLICATION
     post 'userAuthentication', to: 'application#user_authentication'
-    
-    # HOME
-    get 'top', to: 'home#top'
+    post 'setCurrentUser', to: 'application#set_current_user'
 
     # USERS
-    get 'signup', to: 'users#signup'
-    post 'signupAuth', to: 'application#signup_auth'
-    post 'setCurrentUser', to: 'application#set_current_user'
+    post 'signupAuth', to: 'users#signup_auth'
     get 'users/:user_id', to: 'users#show'
     get 'users/edit', to: 'users#edit'
     post 'users/update', to: 'users#update'
-    get 'login', to: 'users#login'
     post 'loginAuth', to: 'users#login_auth'
 
     post 'logout', to: 'users#logout'

@@ -1,6 +1,15 @@
-import React from 'react';
+import {React, useEffect} from 'react';
 
-export const EventDetails = () => {
+import { fetchEventsShow } from '../apis/events'
+
+export const EventDetails = ({match}) => {
+    useEffect(() => {
+        fetchEventsShow(match.params.event_id)
+        .then(data => 
+            console.log(data)
+        )
+    }, [])
+
     return(
         <div></div>
     )
