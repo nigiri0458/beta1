@@ -3,7 +3,7 @@ const DEFAULT_API = "http://localhost:3000/api"
 export const userAuth = `${DEFAULT_API}/userAuthentication`;
 export const signupAuth = `${DEFAULT_API}/signupAuth`;
 export const setCurrentUser = `${DEFAULT_API}/setCurrentUser`;
-export const usersShow = (userId) => `${DEFAULT_API}/users/${userId}`;
+export const usersShow = `${DEFAULT_API}/users/mypage`;
 export const usersEdit = `${DEFAULT_API}/users/edit`;
 export const usersUpdate = `${DEFAULT_API}/users/update`;
 export const loginAuth = `${DEFAULT_API}/loginAuth`;

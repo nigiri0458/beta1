@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     # USERS
     post 'signupAuth', to: 'users#signup_auth'
-    get 'users/:user_id', to: 'users#show'
+    get 'users/mypage', to: 'users#show'
     get 'users/edit', to: 'users#edit'
     post 'users/update', to: 'users#update'
     post 'loginAuth', to: 'users#login_auth'

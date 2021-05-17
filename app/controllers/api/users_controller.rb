@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-    before_action :user_authentication, only: [:show, :edit, :update]
+    # before_action :user_authentication, only: [:show, :edit, :update]
 
     # 新規登録認証
     def signup_auth
@@ -13,7 +13,6 @@ class Api::UsersController < ApplicationController
             })
             if user.save
                 session[:user_id] = user.id
-                redirect_to("/top")
             else
                 render json: {}, status: :internal_server_error
             end
@@ -52,7 +51,6 @@ class Api::UsersController < ApplicationController
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            redirect_to("/top")
         else
             render json: {}, status: :internal_server_error
         end

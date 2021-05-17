@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { signupAuth, usersShow, usersEdit, usersUpdate, loginAuth, logout} from '../urls/index';
 
-export const fetchUsersShow = (userId) => {
-    return axios.get(usersShow(userId))
+export const fetchUsersShow = () => {
+    return axios.get(usersShow)
     .then(res => {
         return res.data
     })

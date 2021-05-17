@@ -7,7 +7,7 @@ import {Login} from './containers/Login';
 import {OrderHistories} from './containers/OrderHistories';
 import {Orders} from './containers/Orders';
 import {Signup} from './containers/Signup';
-import {User} from './containers/User';
+import {Mypage} from './containers/MyPage';
 
 import {Top} from './components/Top';
 import {Header} from './components/Header';
@@ -48,10 +48,10 @@ function App() {
             <Login />
           </Route>
 
-          <Route exact path="/users/:user_id">
-            <User />
+          <Route exact path="/mypage">
+            <Mypage />
           </Route>
-
+          
           <Route exact path="/users/edit">
             <EditUser />
           </Route>
