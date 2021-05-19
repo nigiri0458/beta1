@@ -1,4 +1,4 @@
-const DEFAULT_API = "http://localhost:3000/api"
+const DEFAULT_API = "http://127.0.0.1:3000/api"
 
 export const userAuth = `${DEFAULT_API}/userAuthentication`;
 export const signupAuth = `${DEFAULT_API}/signupAuth`;

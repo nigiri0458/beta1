@@ -12,7 +12,7 @@ export const Login = () => {
 
     const handleSubmit = () => {
         postLoginAuth(username,password)
-        .then(() => history.push("/top"))
+        .then(() => console.log("after post login"))
         .catch((e) => console.error(e))
     }
     return(

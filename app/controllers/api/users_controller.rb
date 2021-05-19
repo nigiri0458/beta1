@@ -1,6 +1,21 @@
 class Api::UsersController < ApplicationController
     # before_action :user_authentication, only: [:show, :edit, :update]
 
+    # ログイン認証
+    def login_auth
+        @user = User.find_by(username: params[:username])
+        if @user && @user.authenticate(params[:password])
+            cookies[:user_id] = @user.id
+            render json: {
+                user: @user,
+                #sess: session
+            }
+            # @user = User.find(user.id)
+        else
+            render json: {}, status: :internal_server_error
+        end
+    end
+
     # 新規登録認証
     def signup_auth
         if User.exists?(username: params[:username]) || User.exists?(email: params[:email])
@@ -21,9 +36,10 @@ class Api::UsersController < ApplicationController
 
     # ユーザーページを表示
     def show
-        user = User.find(@user.id)
+        user = User.find_by(id: session[:user_id])
         render json: {
-            user: user
+            user: user,
+            #sess: session
         }
     end
 
@@ -46,15 +62,7 @@ class Api::UsersController < ApplicationController
 
     # ログインページを表示
 
-    # ログイン認証
-    def login_auth
-        user = User.find_by(username: params[:username])
-        if user && user.authenticate(params[:password])
-            session[:user_id] = user.id
-        else
-            render json: {}, status: :internal_server_error
-        end
-    end
+    
 
     # ログアウトする
     def logout
