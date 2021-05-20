@@ -5,10 +5,10 @@ class Api::UsersController < ApplicationController
     def login_auth
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
-            cookies[:user_id] = @user.id
+            session[:user_id] = @user.id
             render json: {
                 user: @user,
-                #sess: session
+                sess: session
             }
             # @user = User.find(user.id)
         else
@@ -39,7 +39,7 @@ class Api::UsersController < ApplicationController
         user = User.find_by(id: session[:user_id])
         render json: {
             user: user,
-            #sess: session
+            sess: session
         }
     end
 

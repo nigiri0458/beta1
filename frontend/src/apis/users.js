@@ -2,7 +2,7 @@ import axios from 'axios';
 import { signupAuth, usersShow, usersEdit, usersUpdate, loginAuth, logout} from '../urls/index';
 
 export const fetchUsersShow = () => {
-    return axios.get(usersShow)
+    return axios.get(usersShow,{ withCredentials: true })
     .then(res => {
         return res.data
     })
@@ -47,8 +47,8 @@ export const postLoginAuth = (username, password) => {
     return axios.post(loginAuth,
         {
             username: username,
-            password: password
-        })
+            password: password,
+        },{ withCredentials: true })
     .then(res => {
         return res.data;
     })

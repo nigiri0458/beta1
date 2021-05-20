@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+    include ActionController::Cookies
     # before_action :set_current_user, only: [:user_authentication]
 
     # def set_current_user
