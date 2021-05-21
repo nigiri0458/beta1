@@ -1,7 +1,8 @@
 import React from 'react';
+import '../styles/Top.css';
 
 export const Top = () => {
     return(
-        <div></div>
+        <div className="top-wrapper">Top</div>
     )
 }
