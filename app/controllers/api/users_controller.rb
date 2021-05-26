@@ -1,14 +1,14 @@
 class Api::UsersController < ApplicationController
     # before_action :user_authentication, only: [:show, :edit, :update]
+    before_action :set_current_user, only: [:show, :edit, :update]
 
     # ログイン認証
     def login_auth
-        @user = User.find_by(username: params[:username])
-        if @user && @user.authenticate(params[:password])
-            session[:user_id] = @user.id
+        user = User.find_by(username: params[:username])
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
             render json: {
-                user: @user,
-                sess: session
+                user: user
             }
             # @user = User.find(user.id)
         else
@@ -36,18 +36,16 @@ class Api::UsersController < ApplicationController
 
     # ユーザーページを表示
     def show
-        user = User.find_by(id: session[:user_id])
         render json: {
-            user: user,
+            user: @user,
             sess: session
         }
     end
 
     # ユーザー情報編集ページを表示
     def edit
-        user = User.find(@user.id)
         render json: {
-            user: user
+            user: @user
         }
     end
 
@@ -67,6 +65,10 @@ class Api::UsersController < ApplicationController
     # ログアウトする
     def logout
         session[:user_id] = nil
+        render json: {
+            user: @user,
+            sess: session
+        }
     end
 
 end

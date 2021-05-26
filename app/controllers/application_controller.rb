@@ -2,14 +2,14 @@ class ApplicationController < ActionController::API
     include ActionController::Cookies
     # before_action :set_current_user, only: [:user_authentication]
 
-    # def set_current_user
-    #     if !(session[:user_id].nil?)
-    #         @user = User.find(session[:user_id])
-    #     else
-    #         render json: {}, status: :internal_server_error
-    #         @user = nil
-    #     end
-    # end
+    def set_current_user
+        if session[:user_id] != nil
+            @user = User.find(session[:user_id])
+        else
+            render json: {}, status: :internal_server_error
+            @user = nil
+        end
+    end
     
     
     #def user_authentication
