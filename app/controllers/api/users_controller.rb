@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
     # before_action :user_authentication, only: [:show, :edit, :update]
-    before_action :set_current_user, only: [:show, :edit, :update]
+    before_action :set_current_user, only: [:show, :edit, :update, :logout]
 
     # ログイン認証
     def login_auth
@@ -64,7 +64,8 @@ class Api::UsersController < ApplicationController
 
     # ログアウトする
     def logout
-        session[:user_id] = nil
+        #session[:user_id] = nil
+        session.delete(:user_id)
         render json: {
             user: @user,
             sess: session

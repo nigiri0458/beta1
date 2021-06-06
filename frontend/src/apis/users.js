@@ -56,7 +56,10 @@ export const postLoginAuth = (username, password) => {
 }
 
 export const postLogout = () => {
-    return axios.post(logout, {})
+    return axios.post(logout,
+                    　{},
+                    　{withCredentials: true}
+                    )
     .then(res => {
         return res.data;
     })
