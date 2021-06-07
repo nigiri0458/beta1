@@ -24,7 +24,7 @@ export const Login = () => {
 
     return(
         <div className="login-wrapper">
-            <p>ログイン画面だお</p>
+            <p className="login-page-title">ログイン LOGIN</p>
             <div className="login-form">
                 <div className="login-form-username">
                     <TextField 

@@ -1,5 +1,11 @@
 .login-wrapper {
-  padding-top: 350px;
+  padding-top: 220px;
+}
+
+.login-page-title{
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 50px;
 }
 
 .login-form{

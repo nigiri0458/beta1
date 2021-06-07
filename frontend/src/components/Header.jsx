@@ -3,6 +3,8 @@ import {Link, useHistory} from 'react-router-dom';
 import {postLogout} from '../apis/users';
 import '../styles/Header.css';
 
+import Drawer from '@material-ui/core/Drawer';
+
 export const Header = () => {
     const history = useHistory();
     
@@ -20,17 +22,20 @@ export const Header = () => {
                 </Link>
             </div>
             <div className="header-right">
-                <div className="header-button">
-                Login
-                </div>
-                <div className="header-button">
-                Sign Up
-                </div>
-                <div className="header-button">
-                Menu Bar
-                </div>
-                <div className="header-button" onClick={() => handleLogout()}>
-                Log Out
+                <Link to="/login" className="login-button">
+                    <div className="header-button-login">
+                        ログイン<br/>LOGIN
+                    </div>
+                </Link>
+                <Link to="/signup" className="signup-button">
+                    <div className="header-button-signup">
+                        新規登録<br/>SIGN UP
+                    </div>
+                </Link>
+
+                
+                <div className="header-button-logout" onClick={() => handleLogout()}>
+                    ログアウト<br/>LOGOUT
                 </div>
             </div>
         </header>
