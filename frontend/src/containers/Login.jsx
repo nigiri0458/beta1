@@ -15,7 +15,7 @@ export const Login = () => {
     const [password, setPassword] = useState('');
 
     const handleSubmit = () => {
-        if(!(username==="") || !(password==="")){
+        if(!(username==="") && !(password==="")){
             postLoginAuth(username,password)
             .then(() => history.push("/top"))
             .catch((e) => console.error(e))

@@ -3,8 +3,6 @@ import {Link, useHistory} from 'react-router-dom';
 import {postLogout} from '../apis/users';
 import '../styles/Header.css';
 
-import Drawer from '@material-ui/core/Drawer';
-
 export const Header = () => {
     const history = useHistory();
     
@@ -33,7 +31,6 @@ export const Header = () => {
                     </div>
                 </Link>
 
-                
                 <div className="header-button-logout" onClick={() => handleLogout()}>
                     ログアウト<br/>LOGOUT
                 </div>
