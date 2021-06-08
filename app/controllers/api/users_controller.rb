@@ -39,7 +39,7 @@ class Api::UsersController < ApplicationController
         render json: {
             user: @user,
             sess: session
-        }
+        }, status: :ok
     end
 
     # ユーザー情報編集ページを表示

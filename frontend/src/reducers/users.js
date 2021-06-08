@@ -1,26 +1,26 @@
-import { REQUEST_STATE } from '../constants'
+import { REQUEST_STATE } from '../constants';
 
 export const initialState = {
     fetchState: REQUEST_STATE.INITIAL,
-    eventsList: []
+    userInfo: [],
 };
 
-export const eventsActionTypes = {
+export const usersActionTypes = {
     FETCHING: 'FETCHING',
     FETCH_SUCCESS: 'FETCH_SUCCESS',
 };
 
-export const eventsReducer = (state,action) => {
+export const usersReducer = (state, action) => {
     switch (action.type) {
-        case eventsActionTypes.FETCHING:
+        case usersActionTypes.FETCHING:
             return {
                 ...state,
                 fetchState: REQUEST_STATE.LOADING,
             };
-        case eventsActionTypes.FETCH_SUCCESS:
+        case usersActionTypes.FETCH_SUCCESS:
             return {
                 fetchState: REQUEST_STATE.OK,
-                eventsList: action.payload.events,
+                userInfo: action.payload.user,
             };
     
         default:
