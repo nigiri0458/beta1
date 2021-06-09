@@ -5,10 +5,16 @@ import '../styles/Header.css';
 
 export const Header = () => {
     const history = useHistory();
+
+    const logoutCorrect = () => {
+        localStorage.setItem("loginState", "false");
+        history.push("/top");
+        console.log(localStorage.getItem("loginState"));
+    }
     
     const handleLogout = () => {
         postLogout()
-        .then(() => history.push('/top'))
+        .then(() => logoutCorrect())
         .catch((e) => console.error(e));
     }
 

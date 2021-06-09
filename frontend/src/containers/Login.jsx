@@ -14,10 +14,16 @@ export const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const loginCorrect = () => {
+        localStorage.setItem("loginState", "true");
+        history.push("/top");
+        console.log(localStorage.getItem("loginState"));
+    }
+
     const handleSubmit = () => {
         if(!(username==="") && !(password==="")){
             postLoginAuth(username,password)
-            .then(() => history.push("/top"))
+            .then(() => loginCorrect())
             .catch((e) => console.error(e))
         }
     }
