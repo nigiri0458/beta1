@@ -13,6 +13,7 @@ export const Login = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loginFailed, setLoginFailed] = useState(false);
 
     const loginCorrect = () => {
         localStorage.setItem("loginState", "true");
@@ -20,11 +21,16 @@ export const Login = () => {
         window.location.reload();
     }
 
+    const loginFail = (e) => {
+        console.log(e);
+        setLoginFailed(true);
+    }
+
     const handleSubmit = () => {
         if(!(username==="") && !(password==="")){
             postLoginAuth(username,password)
             .then(() => loginCorrect())
-            .catch((e) => console.error(e))
+            .catch((e) => loginFail(e));
         }
     }
 
@@ -55,6 +61,14 @@ export const Login = () => {
                 <div className="login-form-submit">
                     <Button variant="contained" onClick={() => handleSubmit()}>ログイン Login</Button>
                 </div>
+                {
+                    loginFailed ?
+                    <div>
+                        <p className="login-error-message">ログインに失敗しました。</p>
+                    </div>
+                    :
+                    <div></div>
+                }
             </div>
         </div>
     )
