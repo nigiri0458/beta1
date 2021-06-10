@@ -1,0 +1,18 @@
+.edit-page-wrapper{
+    padding-top: 220px;
+}
+
+.edit-page-title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+.edit-page-text{
+    width: 40%;
+    margin: 0 auto;
+    height: 20px;
+    font-size: 20px;
+    padding-left: 10px;
+    margin-bottom: 60px;
+}

@@ -10,7 +10,7 @@ export const fetchUsersShow = () => {
 }
 
 export const fetchUsersEdit = () => {
-    return axios.get(usersEdit)
+    return axios.get(usersEdit, { withCredentials: true })
     .then(res => {
         return res.data
     })

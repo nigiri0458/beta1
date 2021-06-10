@@ -30,7 +30,7 @@ export const Mypage = () => {
             <p className="mypage-title">マイページ MyPage</p>
             <h2 className="mypage-username">ユーザー名 Username</h2>
             <p className="mypage-username2">{state.userInfo.username}</p>
-            <Link to="/user/edit" className="mypage-edit-link">
+            <Link to="/users/edit" className="mypage-edit-link">
                 <div className="mypage-edit-button">
                     ユーザー情報変更<br/>Edit User Info
                 </div>

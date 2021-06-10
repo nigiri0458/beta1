@@ -6,7 +6,7 @@ import '../styles/Login.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import {postLoginAuth} from '../apis/users'
+import {postLoginAuth} from '../apis/users';
 
 export const Login = () => {
     const history = useHistory();
