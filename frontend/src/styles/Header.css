@@ -24,12 +24,12 @@ header{
 
 .header-button1{
     width: 150px;
-    height: 45px;
+    height: 60px;
     float: left;
     margin-right: 10px;
-    background-color: rgba(98, 119, 255, 0.8);
-    line-height: 22px;
-    border-radius: 20px;
+    background-color: rgba(240, 240, 240, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding-top: 10px;
 }
 
 .header-button1:hover{
@@ -39,12 +39,12 @@ header{
 
 .header-button2{
     width: 150px;
-    height: 45px;
+    height: 60px;
     float: left;
     margin-right: 10px;
-    background-color: rgba(17, 207, 0, 0.8);
-    line-height: 22px;
-    border-radius: 20px;
+    background-color: rgba(240, 240, 240, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding-top: 10px;
 }
 
 .header-button2:hover{
@@ -54,29 +54,32 @@ header{
 
 .header-link1{
     text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
     font-weight: 900;
+    line-height: 25px;
 }
 
 .header-link2{
     text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
     font-weight: 900;
+    line-height: 25px;
 }
 
 .header-button-logout{
     width: 150px;
-    height: 45px;
+    height: 60px;
     float: left;
     margin-right: 10px;
-    background-color: rgba(20, 20, 20, 0.8);
-    line-height: 22px;
-    border-radius: 20px;
-    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.8);
     font-size: 16px;
     font-weight: 900;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding-top: 10px;
+    line-height: 25px;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .header-button-logout:hover{

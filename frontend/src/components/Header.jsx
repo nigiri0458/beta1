@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {postLogout} from '../apis/users';
 import '../styles/Header.css';
@@ -6,8 +6,11 @@ import '../styles/Header.css';
 export const Header = () => {
     const history = useHistory();
 
+    const [loginState, setLoginState] = useState(localStorage.getItem("loginState"));
+
     const logoutCorrect = () => {
         localStorage.setItem("loginState", "false");
+        setLoginState("false");
         history.push("/top");
         window.location.reload();
     }
@@ -27,7 +30,7 @@ export const Header = () => {
             </div>
             <div className="header-right">
                 {
-                    localStorage.getItem("loginState") === "true" ?
+                    loginState === "true" ?
                     <div>
                         <Link to="/mypage" className="header-link1">
                             <div className="header-button1">
@@ -57,7 +60,7 @@ export const Header = () => {
                 }
 
             {
-                localStorage.getItem("loginState") === "true" ?
+                loginState === "true" ?
                 <div className="header-button-logout" onClick={() => handleLogout()}>
                     ログアウト<br/>LOGOUT
                 </div>

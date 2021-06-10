@@ -27,6 +27,10 @@ import './styles/Header.css';
 
 function App() {
 
+  if(!(localStorage.getItem("loginState"))){
+    localStorage.setItem("loginState", "false");
+  }
+
   return (
     <Router>
       <Header />
