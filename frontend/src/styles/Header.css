@@ -22,7 +22,7 @@ header{
     margin-top: 30px;
 }
 
-.header-button-login{
+.header-button1{
     width: 150px;
     height: 45px;
     float: left;
@@ -32,12 +32,12 @@ header{
     border-radius: 20px;
 }
 
-.header-button-login:hover{
+.header-button1:hover{
     opacity: 0.6;
     transition: all 0.2s;
 }
 
-.header-button-signup{
+.header-button2{
     width: 150px;
     height: 45px;
     float: left;
@@ -47,19 +47,19 @@ header{
     border-radius: 20px;
 }
 
-.header-button-signup:hover{
+.header-button2:hover{
     opacity: 0.6;
     transition: all 0.2s;
 }
 
-.login-button{
+.header-link1{
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-size: 16px;
     font-weight: 900;
 }
 
-.signup-button{
+.header-link2{
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-size: 16px;

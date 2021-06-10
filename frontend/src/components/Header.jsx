@@ -9,7 +9,7 @@ export const Header = () => {
     const logoutCorrect = () => {
         localStorage.setItem("loginState", "false");
         history.push("/top");
-        console.log(localStorage.getItem("loginState"));
+        window.location.reload();
     }
     
     const handleLogout = () => {
@@ -26,20 +26,44 @@ export const Header = () => {
                 </Link>
             </div>
             <div className="header-right">
-                <Link to="/login" className="login-button">
-                    <div className="header-button-login">
-                        ログイン<br/>LOGIN
+                {
+                    localStorage.getItem("loginState") === "true" ?
+                    <div>
+                        <Link to="/mypage" className="header-link1">
+                            <div className="header-button1">
+                                マイページ<br/>My Page
+                            </div>
+                        </Link>
+                        <Link to="/cart" className="header-link2">
+                            <div className="header-button2">
+                                カート<br/>Cart
+                            </div>
+                        </Link>
                     </div>
-                </Link>
-                <Link to="/signup" className="signup-button">
-                    <div className="header-button-signup">
-                        新規登録<br/>SIGN UP
+                    :
+                    <div>
+                        <Link to="/login" className="header-link1">
+                            <div className="header-button1">
+                                ログイン<br/>LOGIN
+                            </div>
+                        </Link>
+                        <Link to="/signup" className="header-link2">
+                            <div className="header-button2">
+                                新規登録<br/>SIGN UP
+                            </div>
+                        </Link>
                     </div>
-                </Link>
+                    
+                }
 
+            {
+                localStorage.getItem("loginState") === "true" ?
                 <div className="header-button-logout" onClick={() => handleLogout()}>
                     ログアウト<br/>LOGOUT
                 </div>
+                :
+                <div></div>
+            }
             </div>
         </header>
     )

@@ -17,7 +17,7 @@ export const Login = () => {
     const loginCorrect = () => {
         localStorage.setItem("loginState", "true");
         history.push("/top");
-        console.log(localStorage.getItem("loginState"));
+        window.location.reload();
     }
 
     const handleSubmit = () => {
