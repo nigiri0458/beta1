@@ -29,12 +29,15 @@ export const Mypage = () => {
         <div className="mypage-wrapper">
             <p className="mypage-title">マイページ MyPage</p>
             <h2 className="mypage-username">ユーザー名 Username</h2>
-            <p className="mypage-username2">{state.userInfo.username}</p>
-            <Link to="/users/edit" className="mypage-edit-link">
-                <div className="mypage-edit-button">
-                    ユーザー情報変更<br/>Edit User Info
-                </div>
-            </Link>
+            <div className="mypage-edit-form">
+                <p className="mypage-username2">{state.userInfo.username}</p>
+                <button className="mypage-edit-button">変更<br/>Edit</button>
+            </div>
+            <h2 className="mypage-email">メールアドレス Email</h2>
+            <div className="mypage-edit-form">
+                <p className="mypage-email2">{state.userInfo.email}</p>
+                <button className="mypage-edit-button">変更<br/>Edit</button>
+            </div>
             
             <Link to="/cart" className="mypage-cart-link">
                 <div className="mypage-cart-button">
