@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { initialState, usersActionTypes, usersReducer } from '../reducers/users';
 import { REQUEST_STATE } from '../constants';
 
-import {fetchUsersShow} from '../apis/users';
+import {fetchUsersShow, postUsersUsernameUpdate, postUsersEmailUpdate} from '../apis/users';
 
 import '../styles/MyPage.css';
 
@@ -16,13 +16,15 @@ export const Mypage = () => {
     useEffect(() => {
         dispatch({type: usersActionTypes.FETCHING});
         fetchUsersShow()
-        .then((data)=>
-            dispatch({
-                type: usersActionTypes.FETCH_SUCCESS,
-                payload: {
-                    user: data.user
-                }
-            })
+        .then((data)=> {
+                dispatch({
+                    type: usersActionTypes.FETCH_SUCCESS,
+                    payload: {
+                        user: data.user
+                    }
+                });
+                console.log(data);
+            }
         );
     }, [])
 
@@ -34,12 +36,31 @@ export const Mypage = () => {
     const [email, setEmail] = useState(state.userInfo.email);
 
     const usernameModalSubmit = () => {
-
+        postUsersUsernameUpdate(username)
+        .then(() => window.location.reload())
+        .catch((e) => console.log(e));
+        setUsernameModalOpen(false);
+        setUsernameEditorOpen(false);
+        //fetchUsersShow()
+        //.then((data)=> console.log(data));
     }
 
     const usernameModalClose = () => {
         setUsernameModalOpen(false);
         setUsernameEditorOpen(false);
+    }
+
+    const emailModalSubmit = () => {
+        postUsersEmailUpdate(email)
+        .then(() => window.location.reload())
+        .catch((e) => console.log(e));
+        setEmailModalOpen(false);
+        setEmailEditorOpen(false);
+    }
+
+    const emailModalClose = () => {
+        setEmailModalOpen(false);
+        setEmailEditorOpen(false);
     }
 
     return(
@@ -49,9 +70,24 @@ export const Mypage = () => {
             {
                 usernameModalOpen ?
                 <div className="mypage-modal">
-                    <p className="mypage-modal-message">ユーザー名を{username}に変更します。よろしいですか？</p>
-                    <button className="mypage-submit-button" onClick={() => usernameModalSubmit()}>はい<br/>Yes</button>
-                    <button className="mypage-submit-button" onClick={() => usernameModalClose()}>いいえ<br/>No</button>
+                    <p className="mypage-modal-message">ユーザー名を    {username}    に変更します。よろしいですか？</p>
+                    <div className="mypage-modal-container">
+                        <button className="mypage-submit-button1" onClick={() => usernameModalSubmit()}>はい<br/>Yes</button>
+                        <button className="mypage-submit-button2" onClick={() => usernameModalClose()}>いいえ<br/>No</button>
+                    </div>
+                </div>
+                :
+                <div>
+                </div>
+            }
+            {
+                emailModalOpen ?
+                <div className="mypage-modal">
+                    <p className="mypage-modal-message">メールアドレスを    {email}    に変更します。よろしいですか？</p>
+                    <div className="mypage-modal-container">
+                        <button className="mypage-submit-button1" onClick={() => emailModalSubmit()}>はい<br/>Yes</button>
+                        <button className="mypage-submit-button2" onClick={() => emailModalClose()}>いいえ<br/>No</button>
+                    </div>
                 </div>
                 :
                 <div>
@@ -90,7 +126,7 @@ export const Mypage = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <button className="mypage-edit-button1" onClick={() => setEmailEditorOpen(false)}>確定<br/>Submit</button>
+                        <button className="mypage-edit-button1" onClick={() => setEmailModalOpen(true)}>確定<br/>Submit</button>
                         <button className="mypage-edit-button2" onClick={() => setEmailEditorOpen(false)}>キャンセル<br/>Cancel</button>
                     </div>
                     :

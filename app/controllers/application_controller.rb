@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
         if session[:user_id] != nil
             @user = User.find(session[:user_id])
         else
-            render json: {}, status: :internal_server_error
+            render json: {error: "set_current_user", sess: session[:user_id]}, status: :internal_server_error
             @user = nil
         end
     end

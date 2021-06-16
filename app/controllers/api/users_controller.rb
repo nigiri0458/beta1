@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-    # before_action :user_authentication, only: [:show, :edit, :update]
+    # before_action :user_authentication, only: [:show, :edit, :update] 
     before_action :set_current_user, only: [:show, :edit, :update, :logout]
 
     # ログイン認証
@@ -52,10 +52,14 @@ class Api::UsersController < ApplicationController
     # ユーザー情報を更新
     def update
         user = User.find(@user.id)
-        user.update(
-            username: params[:username],
-            email: params[:email]
-        )
+        if params[:username]
+            user.update(username: params[:username])
+        end
+
+        if params[:email]
+            user.update(email: params[:email])
+        end
+        
     end
 
     # ログインページを表示

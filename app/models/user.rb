@@ -3,7 +3,7 @@ class User < ApplicationRecord
     has_one :cart
     has_one :order_history
 
-    validates :password, :email, presence: true
-    validates :password, length: {minimum:8, maximum:16}
+    validates :password, :email, presence: true, on: :create
+    validates :password, length: {minimum:8, maximum:16}, on: :create
 
 end

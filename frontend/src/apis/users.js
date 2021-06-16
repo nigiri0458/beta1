@@ -17,13 +17,22 @@ export const fetchUsersEdit = () => {
     .catch((e) => console.error(e))
 }
 
-export const postUsersUpdate = (username, password, email) => {
+export const postUsersUsernameUpdate = (username) => {
     return axios.post(usersUpdate,
         {
-            username: username,
-            password: password,
-            email: email
+            username: username
+        },{ withCredentials: true })
+        .then(res => {
+            return res.data;
         })
+        .catch((e) => {throw e;})
+}
+
+export const postUsersEmailUpdate = (email) => {
+    return axios.post(usersUpdate,
+        {
+            email: email
+        },{ withCredentials: true })
         .then(res => {
             return res.data;
         })
@@ -36,7 +45,7 @@ export const postSignupAuth = (username, password, email) => {
             username: username,
             password: password,
             email: email
-        })
+        },{ withCredentials: true })
     .then(res => {
         return res.data;
     })
