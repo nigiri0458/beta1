@@ -1,4 +1,5 @@
 import React from 'react';
+import {Admin} from './containers/Admin';
 import {Cart} from './containers/Cart';
 import {EditUser} from './containers/EditUser';
 import {EventDetails} from './containers/EventDetails';
@@ -35,6 +36,10 @@ function App() {
     <Router>
       <Header />
         <Switch>
+          <Route exact path="/admin">
+            <Admin />
+          </Route>
+
           <Route exact path="/top">
             <Top />
           </Route>

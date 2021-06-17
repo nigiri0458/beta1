@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { signupAuth, usersShow, usersEdit, usersUpdate, loginAuth, logout} from '../urls/index';
+import { signupAuth, usersShow, usersEdit, usersUpdate, loginAuth, logout, adminPage} from '../urls/index';
 
 export const fetchUsersShow = () => {
     return axios.get(usersShow,{ withCredentials: true })
@@ -9,13 +9,13 @@ export const fetchUsersShow = () => {
     .catch((e) => console.error(e))
 }
 
-//export const fetchUsersEdit = () => {
-//    return axios.get(usersEdit, { withCredentials: true })
-//    .then(res => {
-//        return res.data
-//    })
-//    .catch((e) => console.error(e))
-//}
+export const fetchUsersEdit = () => {
+    return axios.get(usersEdit, { withCredentials: true })
+    .then(res => {
+        return res.data
+    })
+    .catch((e) => console.error(e))
+}
 
 export const postUsersUsernameUpdate = (username) => {
     return axios.post(usersUpdate,
@@ -69,6 +69,14 @@ export const postLogout = () => {
                     　{},
                     　{withCredentials: true}
                     )
+    .then(res => {
+        return res.data;
+    })
+    .catch((e) => {throw e;})
+}
+
+export const adminShow = () => {
+    return axios.get(adminPage, { withCredentials: true })
     .then(res => {
         return res.data;
     })

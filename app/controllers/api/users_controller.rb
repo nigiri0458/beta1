@@ -1,6 +1,7 @@
 class Api::UsersController < ApplicationController
     # before_action :user_authentication, only: [:show, :edit, :update] 
-    before_action :set_current_user, only: [:show, :edit, :update, :logout]
+    before_action :set_current_user, only: [:show, :edit, :update, :logout, :admin_page]
+    #before_action :admin_auth, only: [:admin_page]
 
     # ログイン認証
     def login_auth
@@ -10,7 +11,7 @@ class Api::UsersController < ApplicationController
             render json: {
                 user: user
             }
-            # @user = User.find(user.id)
+             @user = User.find(user.id)
         else
             render json: {}, status: :internal_server_error
         end
@@ -73,7 +74,24 @@ class Api::UsersController < ApplicationController
         render json: {
             user: @user,
             sess: session
-        }
+        }, status: :ok
+    end
+
+    #管理者ページ
+    #def admin_auth
+    #    if !(@user.username == 'iwashi_nigiri')
+    #        render json: {}, status: :internal_server_error
+    #    end
+    #end
+
+    def admin_page
+        if !(@user.username == 'iwashi_nigiri')
+            render json: {}, status: :internal_server_error
+        else
+            render json: {
+                user: @user
+            }, status: :ok
+        end
     end
 
 end

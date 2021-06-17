@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     post 'loginAuth', to: 'users#login_auth'
 
     post 'logout', to: 'users#logout'
+
+    get 'admin', to: 'users#admin_page'
   
     # EVENTS
     get 'events', to: 'events#index'
