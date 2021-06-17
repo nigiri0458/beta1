@@ -9,13 +9,13 @@ export const fetchUsersShow = () => {
     .catch((e) => console.error(e))
 }
 
-export const fetchUsersEdit = () => {
-    return axios.get(usersEdit, { withCredentials: true })
-    .then(res => {
-        return res.data
-    })
-    .catch((e) => console.error(e))
-}
+//export const fetchUsersEdit = () => {
+//    return axios.get(usersEdit, { withCredentials: true })
+//    .then(res => {
+//        return res.data
+//    })
+//    .catch((e) => console.error(e))
+//}
 
 export const postUsersUsernameUpdate = (username) => {
     return axios.post(usersUpdate,
