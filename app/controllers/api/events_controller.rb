@@ -14,4 +14,23 @@ class Api::EventsController < ApplicationController
       event: event
     }, status: :ok
   end
+
+  def create
+    image = Cloudinary::Uploader.upload(params[:image])
+    event = Event.new({
+      name: params[:name],
+      group: params[:group],
+      image: image["url"],
+      date: params[:date],
+      description: params[:description],
+      info: params[:info],
+      price: params[:price]
+    })
+    if event.save!
+      render json: {event_saved: "save success"}, status: :ok
+    else
+      render json: {}, status: :internal_server_error
+    end
+  end
+
 end

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { eventsIndex, eventsShow } from '../urls/index';
+import { eventsIndex, eventsShow, eventCreate } from '../urls/index';
 
 
 export const fetchEventsIndex = () => {
@@ -16,4 +16,21 @@ export const fetchEventsShow = (eventId) => {
         return res.data;
     })
     .catch((e) => console.error(e))
+}
+
+export const createEvent = (name, group, image, date, description, info, price) => {
+    return axios.post(eventcreate,
+            {
+                name: name,
+                group: group,
+                image: image,
+                date: date,
+                description: description,
+                info: info,
+                price: price
+            }, { withCredentials: true })
+    .then(res => {
+        return res.data;
+    })
+    .catch((e) => {throw e;})
 }

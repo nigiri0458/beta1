@@ -11,6 +11,7 @@ export const loginAuth = `${DEFAULT_API}/loginAuth`;
 export const logout = `${DEFAULT_API}/logout`;
 export const eventsIndex = `${DEFAULT_API}/events`;
 export const eventsShow = (eventId) => `${DEFAULT_API}/events/${eventId}`;
+export const eventCreate = `${DEFAULT_API}/events/create`;
 export const cartsIndex = (userId) => `${DEFAULT_API}/users/${userId}/cart`;
 export const cartItemsCreate = (eventId) => `${DEFAULT_API}/events/${eventId}/create`;
 export const cartItemsChangeQuantity = (itemId) => `${DEFAULT_API}/cart_items/${itemId}/changeQuantity`;
