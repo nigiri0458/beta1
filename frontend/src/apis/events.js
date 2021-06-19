@@ -19,7 +19,7 @@ export const fetchEventsShow = (eventId) => {
 }
 
 export const createEvent = (name, group, image, date, description, info, price) => {
-    return axios.post(eventcreate,
+    return axios.post(eventCreate,
             {
                 name: name,
                 group: group,
