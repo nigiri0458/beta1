@@ -16,11 +16,10 @@ class Api::EventsController < ApplicationController
   end
 
   def create
-    image = Cloudinary::Uploader.upload(params[:image])
     event = Event.new({
       name: params[:name],
       group: params[:group],
-      image: image["url"],
+      image: params[:image],
       date: params[:date],
       description: params[:description],
       info: params[:info],

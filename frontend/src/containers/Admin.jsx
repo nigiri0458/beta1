@@ -14,13 +14,13 @@ export const Admin = () => {
 
     const [name, setName] = useState('');
     const [group, setGroup] = useState('');
-    const [image, setImage] = useState({});
+    const [image, setImage] = useState("");
+    const [url, setUrl] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
     const [info, setInfo] = useState('');
     const [price, setPrice] = useState('');
 
-    const [eventState, setEventState] = useState(false);
     
 
     useEffect(() => {
@@ -44,12 +44,26 @@ export const Admin = () => {
     }, [])
 
     const handleSubmit = () => {
-        createEvent(name, group, image, date, description, info, price)
-        .then(() => {
-            console.log("sent correctly");
-            setEventState(true);
+        const data = new FormData();
+        data.append("file", image);
+        data.append("upload_preset", "test_preset");
+        data.append("cloud_name", "handshake");
+        fetch("https://api.cloudinary.com/v1_1/handshake/image/upload", {
+            method: "post",
+            body: data
         })
-        .catch((e) => console.log(e));
+        .then(res => res.json())
+        .then(data => {
+            setUrl(data.url);
+            console.log(data.url);
+            //console.log(url);
+            createEvent(name, group, data.url, date, description, info, price)
+            .then(() => {
+            console.log("sent correctly");
+            })
+            .catch((e) => console.log(e));
+        })
+        .catch(e => console.log(e));
     }
 
 
@@ -62,31 +76,32 @@ export const Admin = () => {
                     <div>{state.userInfo.username}</div>
 
                     <div>
-                        <p>Name</p>
-                        <input type="text" name="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                            <p>Name</p>
+                            <input type="text" name="Name" value={name} onChange={(e) => setName(e.target.value)} />
 
-                        <p>Group</p>
-                        <input type="text" name="Group" value={group} onChange={(e) => setGroup(e.target.value)} />
+                            <p>Group</p>
+                            <input type="text" name="Group" value={group} onChange={(e) => setGroup(e.target.value)} />
 
-                        <p>Image</p>
-                        {
-                        //<input type="file" name="Image" value={image} onChange={(e) => setImage(e.target.files[0])} />
-                        }
+                            <p>Image</p>
+                            
+                            <input type="file" name="Image" onChange={(e) => setImage(e.target.files[0])} />
+                            
 
-                        <p>Date</p>
-                        <input type="date" name="Date" value={date} onChange={(e) => setDate(e.target.value)} />
+                            <p>Date</p>
+                            <input type="date" name="Date" value={date} onChange={(e) => setDate(e.target.value)} />
 
-                        <p>Description</p>
-                        <textarea type="text" name="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                            <p>Description</p>
+                            <textarea type="text" name="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
 
-                        <p>Info</p>
-                        <input type="text" name="Info" value={info} onChange={(e) => setInfo(e.target.value)} />
+                            <p>Info</p>
+                            <input type="text" name="Info" value={info} onChange={(e) => setInfo(e.target.value)} />
 
-                        <p>Price</p>
-                        <input type="text" name="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
+                            <p>Price</p>
+                            <input type="text" name="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
 
-                        <p>Submit</p>
-                        <button onClick={() => handleSubmit()} >Submit</button>
+                            <p>Submit</p>
+                            <button onClick={() => handleSubmit()} >Submit</button>
+                        <img src={url} />
                     </div>
                 </div>
                 :

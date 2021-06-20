@@ -18,12 +18,12 @@ export const fetchEventsShow = (eventId) => {
     .catch((e) => console.error(e))
 }
 
-export const createEvent = (name, group, image, date, description, info, price) => {
+export const createEvent = (name, group, image_url, date, description, info, price) => {
     return axios.post(eventCreate,
             {
                 name: name,
                 group: group,
-                image: image,
+                image: image_url,
                 date: date,
                 description: description,
                 info: info,
