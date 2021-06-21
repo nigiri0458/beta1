@@ -1,0 +1,42 @@
+.events-page-wrapper{
+    padding-top: 220px;
+}
+
+.events-page-title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+.events-page-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.events-page-event{
+    padding-top: 15px;
+    width: 40%;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+    cursor: pointer;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.events-page-image{
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.events-page-name{
+    font-size: 35px;
+    font-weight: 900;
+}
+
+.events-page-date{
+    font-size: 25px;
+    font-size: 600;
+    color: rgba(0, 0, 0, 0.7);
+}

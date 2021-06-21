@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import {React, useEffect, useReducer} from 'react';
+import '../styles/Events.css';
 
 import { fetchEventsIndex } from '../apis/events';
 
@@ -17,16 +18,23 @@ export const Events = () => {
                 events: data.events
             }
          })
-        )
+        );
+        console.log(state);
     }, [])
     return(
-        <Fragment>
-            {state.eventsList.map( event => 
-            <div>
-                { event.name }
-            </div>
-         )
+        <div className="events-page-wrapper">
+            <p className="events-page-title">イベント一覧 EVENTS</p>
+            <div className="events-page-container">
+            {
+                state.eventsList.map((event) =>
+                    <div key={event.id} className="events-page-event" >
+                        <img src={event.image}  className="events-page-image" />
+                        <p className="events-page-name">{event.name}</p>
+                        <p className="events-page-date">{event.date}</p>
+                    </div>
+                    )
             }
-        </Fragment>
+            </div>
+        </div>
     )
 }
