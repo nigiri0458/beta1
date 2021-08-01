@@ -17,7 +17,7 @@ export const Login = () => {
 
     const loginCorrect = () => {
         localStorage.setItem("loginState", "true");
-        history.push("/top");
+        history.go(-1);
         window.location.reload();
     }
 

@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import {React, useEffect, useReducer} from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Events.css';
 
 import { fetchEventsIndex } from '../apis/events';
@@ -27,11 +28,13 @@ export const Events = () => {
             <div className="events-page-container">
             {
                 state.eventsList.map((event) =>
-                    <div key={event.id} className="events-page-event" >
-                        <img src={event.image}  className="events-page-image" />
-                        <p className="events-page-name">{event.name}</p>
-                        <p className="events-page-date">{event.date}</p>
-                    </div>
+                    <Link key={event.id} to={`/events/${event.id}`}>
+                        <div className="events-page-event" >
+                            <img src={event.image}  className="events-page-image" />
+                            <p className="events-page-name">{event.name}</p>
+                            <p className="events-page-date">{event.date}</p>
+                        </div>
+                    </Link>
                     )
             }
             </div>
