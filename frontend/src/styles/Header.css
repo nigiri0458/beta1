@@ -52,6 +52,28 @@ header{
     transition: all 0.2s;
 }
 
+.header-link0{
+    display: block;
+    float: left;
+    width: 150px;
+    height: 60px;
+    margin-left: 20px;
+    margin-top: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    font-weight: 900;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding-top: 10px;
+    line-height: 25px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+.header-link0:hover{
+    opacity: 0.6;
+    transition: all 0.2s;
+}
+
 .header-link1{
     text-decoration: none;
     color: rgb(0, 0, 0);

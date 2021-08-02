@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../features/loginState/loginStateSlice';
@@ -6,7 +6,6 @@ import {postLogout} from '../apis/users';
 import '../styles/Header.css';
 
 export const Header = () => {
-    const history = useHistory();
 
     const loginState = useSelector((state) => state.loginState.boolean);
     const dispatch = useDispatch();
@@ -14,8 +13,6 @@ export const Header = () => {
     const logoutCorrect = () => {
         localStorage.setItem("loginState", "false");
         dispatch(logout());
-        history.goBack();
-        //window.location.reload();
     }
     
     const handleLogout = () => {
@@ -27,8 +24,8 @@ export const Header = () => {
     return (
         <header>
             <div className="home-button">
-                <Link to="/top">
-                HomeIcon
+                <Link to="/top" className="header-link0">
+                トップ<br />Top
                 </Link>
             </div>
             <div className="header-right">

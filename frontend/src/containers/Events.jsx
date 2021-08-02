@@ -28,7 +28,7 @@ export const Events = () => {
             <div className="events-page-container">
             {
                 state.eventsList.map((event) =>
-                    <Link key={event.id} to={`/events/${event.id}`}>
+                    <Link key={event.id} to={`/events/${event.id}`} className="events-page-event-link">
                         <div className="events-page-event" >
                             <img src={event.image}  className="events-page-image" />
                             <p className="events-page-name">{event.name}</p>

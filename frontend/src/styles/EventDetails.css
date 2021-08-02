@@ -1,3 +1,70 @@
 .event-details-page-wrapper{
     padding-top: 220px;
 }
+
+.event-details-page-title{
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.event-details-page-artist{
+    font-size: 35px;
+    padding-bottom: 30px;
+    font-weight: 600;
+}
+
+.event-details-page-date{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.event-details-page-ticket{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.event-details-page-img{
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+.event-details-page-des{
+    width: 60%;
+    margin: 0 auto;
+    line-height: 50px;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 80px;
+}
+
+.event-details-page-buy{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.event-details-page-button{
+    width: 150px;
+    height: 60px;
+    margin: 0 auto;
+    background-color: rgba(240, 240, 240, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding-top: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 25px;
+    margin-bottom: 200px;
+}
+
+.event-details-page-button:hover{
+    opacity: 0.6;
+    transition: all 0.2s;
+}
+

@@ -14,15 +14,20 @@
     justify-content: space-around;
 }
 
+.events-page-event-link{
+    display: block;
+    width: 40%;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+    flex-wrap: wrap;
+}
+
 .events-page-event{
     padding-top: 15px;
-    width: 40%;
-    flex-wrap: wrap;
     margin-bottom: 80px;
     cursor: pointer;
     border: 3px solid rgba(0, 0, 0, 0.1);
 }
-
 
 .events-page-image{
     display: block;

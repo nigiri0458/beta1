@@ -23,7 +23,6 @@ export const Login = () => {
         localStorage.setItem("loginState", "true");
         dispatch(login());
         history.goBack();
-        //window.location.reload();
     }
 
     const loginFail = (e) => {
