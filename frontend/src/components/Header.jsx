@@ -1,18 +1,21 @@
 import {React, useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../features/loginState/loginStateSlice';
 import {postLogout} from '../apis/users';
 import '../styles/Header.css';
 
 export const Header = () => {
     const history = useHistory();
 
-    const [loginState, setLoginState] = useState(localStorage.getItem("loginState"));
+    const loginState = useSelector((state) => state.loginState.boolean);
+    const dispatch = useDispatch();
 
     const logoutCorrect = () => {
         localStorage.setItem("loginState", "false");
-        setLoginState("false");
-        history.push("/top");
-        window.location.reload();
+        dispatch(logout());
+        history.goBack();
+        //window.location.reload();
     }
     
     const handleLogout = () => {

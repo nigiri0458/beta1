@@ -1,5 +1,7 @@
 import {React, useState} from 'react';
 import {useHistory} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../features/loginState/loginStateSlice';
 import '../styles/Login.css';
 
 //Material UI
@@ -11,14 +13,17 @@ import {postLoginAuth} from '../apis/users';
 export const Login = () => {
     const history = useHistory();
 
+    const dispatch = useDispatch();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginFailed, setLoginFailed] = useState(false);
 
     const loginCorrect = () => {
         localStorage.setItem("loginState", "true");
-        history.go(-1);
-        window.location.reload();
+        dispatch(login());
+        history.goBack();
+        //window.location.reload();
     }
 
     const loginFail = (e) => {

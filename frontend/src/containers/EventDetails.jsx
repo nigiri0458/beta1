@@ -1,5 +1,6 @@
 import {React, useEffect, useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { fetchEventsShow } from '../apis/events';
 
@@ -7,8 +8,10 @@ import '../styles/EventDetails.css';
 
 export const EventDetails = ({match}) => {
     const history = useHistory();
+
+    const loginState = useSelector((state) => state.loginState.boolean);
+
     const [event, setEvent] = useState({});
-    const [loginState, setLoginState] = useState(localStorage.getItem("loginState"));
 
     useEffect(() => {
         fetchEventsShow(match.params.event_id)
