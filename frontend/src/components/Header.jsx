@@ -9,10 +9,12 @@ export const Header = () => {
 
     const loginState = useSelector((state) => state.loginState.boolean);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const logoutCorrect = () => {
         localStorage.setItem("loginState", "false");
         dispatch(logout());
+        history.push('/top');
     }
     
     const handleLogout = () => {
