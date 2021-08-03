@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import {React, useEffect, useReducer} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../styles/Events.css';
 
 import { fetchEventsIndex } from '../apis/events';
@@ -8,6 +8,8 @@ import { fetchEventsIndex } from '../apis/events';
 import { initialState, eventsActionTypes, eventsReducer } from '../reducers/events'
 
 export const Events = () => {
+    const history = useHistory();
+
     const [state, dispatch] = useReducer(eventsReducer, initialState)
 
     useEffect(() => {
@@ -19,7 +21,11 @@ export const Events = () => {
                 events: data.events
             }
          })
-        );
+        )
+        .catch((e) => {
+            console.log(e);
+            history.push('/top');
+        });
         console.log(state);
     }, [])
     return(
