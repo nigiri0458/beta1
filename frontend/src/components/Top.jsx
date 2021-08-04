@@ -1,4 +1,5 @@
 import {React, useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import '../styles/Top.css';
 
@@ -7,7 +8,7 @@ export const Top = () => {
         console.log(localStorage.getItem("loginState"));
     }, [])
 
-    const [loginState, setLoginState] = useState(localStorage.getItem("loginState"));
+    const loginState = useSelector((state) => state.loginState.boolean);
 
     return(
         <div className="top-wrapper">

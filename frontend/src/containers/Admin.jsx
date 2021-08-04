@@ -39,7 +39,6 @@ export const Admin = () => {
         )
         .catch((e) => {
             console.log(e);
-            history.push("/");
         })
     }, [])
 
@@ -72,36 +71,34 @@ export const Admin = () => {
             {
                 pageLoaded ?
                 <div>
-                    <div>管理者ページ</div>
-                    <div>{state.userInfo.username}</div>
+                    <div className="admin-page-title">管理者ページ</div>
+                    <div className="admin-page-title">{state.userInfo.username}</div>
 
                     <div>
-                            <p>Name</p>
-                            <input type="text" name="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                            <p className="admin-page-word">Name</p>
+                            <input className="admin-page-input" type="text" name="Name" value={name} onChange={(e) => setName(e.target.value)} />
 
-                            <p>Group</p>
-                            <input type="text" name="Group" value={group} onChange={(e) => setGroup(e.target.value)} />
+                            <p className="admin-page-word">Group</p>
+                            <input className="admin-page-input" type="text" name="Group" value={group} onChange={(e) => setGroup(e.target.value)} />
 
-                            <p>Image</p>
+                            <p className="admin-page-word">Image</p>
+                            <input className="admin-page-input-file" type="file" name="Image" onChange={(e) => setImage(e.target.files[0])} />
                             
-                            <input type="file" name="Image" onChange={(e) => setImage(e.target.files[0])} />
-                            
 
-                            <p>Date</p>
-                            <input type="date" name="Date" value={date} onChange={(e) => setDate(e.target.value)} />
+                            <p className="admin-page-word">Date</p>
+                            <input className="admin-page-input-date" type="date" name="Date" value={date} onChange={(e) => setDate(e.target.value)} />
 
-                            <p>Description</p>
-                            <textarea type="text" name="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                            <p className="admin-page-word">Description</p>
+                            <textarea className="admin-page-input-area" type="text" name="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
 
-                            <p>Info</p>
-                            <input type="text" name="Info" value={info} onChange={(e) => setInfo(e.target.value)} />
+                            <p className="admin-page-word">Info</p>
+                            <input className="admin-page-input" type="text" name="Info" value={info} onChange={(e) => setInfo(e.target.value)} />
 
-                            <p>Price</p>
-                            <input type="text" name="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
+                            <p className="admin-page-word">Price</p>
+                            <input className="admin-page-input" type="text" name="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
 
-                            <p>Submit</p>
-                            <button onClick={() => handleSubmit()} >Submit</button>
-                        <img src={url} />
+                            <p className="admin-page-word">Submit</p>
+                            <button className="admin-page-button" onClick={() => handleSubmit()} >Submit</button>
                     </div>
                 </div>
                 :

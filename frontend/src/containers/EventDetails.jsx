@@ -30,7 +30,7 @@ export const EventDetails = ({match}) => {
             <h1 className="event-details-page-date">Date: {event.date}</h1>
             <h2 className="event-details-page-ticket">Ticket: {event.price} yen</h2>
             <img src={event.image} className="event-details-page-img"/>
-            <p className="event-details-page-des">{event.description} . Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur blandit lacus, eget venenatis massa elementum eget. Aliquam erat volutpat. In tincidunt orci nec neque interdum pharetra. Vivamus non congue arcu. Phasellus non mollis tortor, vehicula finibus libero. Duis posuere convallis odio, non hendrerit mauris. Pellentesque molestie lobortis justo, at vulputate metus auctor eu.</p>
+            <p className="event-details-page-des">{event.description}</p>
             <h3 className="event-details-page-buy">Add to Cart</h3>
             {
                 loginState === 'true'  ?

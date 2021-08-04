@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../features/loginState/loginStateSlice';
 import '../styles/Signup.css';
 import {postSignupAuth} from '../apis/users';
 
@@ -8,6 +10,8 @@ import Button from '@material-ui/core/Button';
 
 export const Signup = () => {
     const history = useHistory();
+
+    const dispatch = useDispatch();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -18,7 +22,11 @@ export const Signup = () => {
         if(!(username==="") && !(password==="")){
             if(password === passwordConfirm){
                 postSignupAuth(username, password, email)
-                .then(() => history.push("/top"))
+                .then(() => {
+                    history.push("/top");
+                    localStorage.setItem("loginState", "true");
+                    dispatch(login());
+                })
                 .catch((e) => console.error(e))
             }else{
                 

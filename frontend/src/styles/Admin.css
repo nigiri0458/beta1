@@ -1,3 +1,58 @@
 .admin-page-wrapper{
     padding-top: 220px;
 }
+
+.admin-page-title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+.admin-page-word{
+    font-size: 40px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.admin-page-input{
+    width: 500px;
+    height: 30px;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.admin-page-input-file{
+    width: 500px;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.admin-page-input-date{
+    width: 500px;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.admin-page-input-area{
+    width: 500px;
+    height: 250px;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.admin-page-button{
+    width: 150px;
+    height: 60px;
+    margin-bottom: 100px;
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 25px;
+    font-weight: 900;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    line-height: 25px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.admin-page-button:hover{
+    opacity: 0.6;
+    translate: all 0.2s;
+}
