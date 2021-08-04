@@ -16,6 +16,7 @@ export const EventDetails = ({match}) => {
     useEffect(() => {
         fetchEventsShow(match.params.event_id)
         .then(data => {
+            window.scrollTo(0, 0);
             setEvent(Object.assign({},data.event));
             console.log(data);
             console.log(event);
