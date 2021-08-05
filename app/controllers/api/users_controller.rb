@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
             render json: {
                 user: user
             }
-             @user = User.find(user.id)
+            @user = User.find(user.id)
         else
             render json: {}, status: :internal_server_error
         end
@@ -29,6 +29,12 @@ class Api::UsersController < ApplicationController
             })
             if user.save
                 session[:user_id] = user.id
+                cart = Cart.new({
+                    user_id: user.id
+                })
+                if cart.save
+                    session[:cart_id] = cart.id
+                end
             else
                 render json: {}, status: :internal_server_error
             end
@@ -69,6 +75,7 @@ class Api::UsersController < ApplicationController
     def logout
         #session[:user_id] = nil
         session.delete(:user_id)
+        session.delete(:cart_id)
         render json: {
             user: @user,
             sess: session

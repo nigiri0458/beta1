@@ -47,6 +47,22 @@
     margin-bottom: 30px;
 }
 
+.event-details-page-add-to-cart{
+    margin-bottom: 200px;
+}
+
+.event-details-page-quantity{
+    font-size: 22px;
+    padding-bottom: 20px;
+}
+
+.event-details-page-select{
+    width: 80px;
+    height: 40px;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
 .event-details-page-button{
     width: 150px;
     height: 60px;
@@ -60,11 +76,10 @@
     font-size: 18px;
     font-weight: 900;
     line-height: 25px;
-    margin-bottom: 200px;
+    margin-bottom: 30px;
 }
 
 .event-details-page-button:hover{
     opacity: 0.6;
     transition: all 0.2s;
 }
-

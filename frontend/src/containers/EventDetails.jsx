@@ -12,6 +12,11 @@ export const EventDetails = ({match}) => {
     const loginState = useSelector((state) => state.loginState.boolean);
 
     const [event, setEvent] = useState({});
+    const [quantity, setQuantity] = useState(1);
+
+    const handleAddToCart = () => {
+        
+    }
 
     useEffect(() => {
         fetchEventsShow(match.params.event_id)
@@ -35,8 +40,23 @@ export const EventDetails = ({match}) => {
             <h3 className="event-details-page-buy">Add to Cart</h3>
             {
                 loginState === 'true'  ?
-                <div className="event-details-page-button">
-                    Add to Cart
+                <div className="event-details-page-add-to-cart">
+                    <p className="event-details-page-quantity">個数 Quantity</p>
+                    <select className="event-details-page-select" onChange={(e) => setQuantity(e.target.value)}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <div className="event-details-page-button" onClick={() => handleAddToCart()}>
+                        Add to Cart
+                    </div>
                 </div>
                 :
                 <div className="event-details-page-button" onClick={() => history.push('/login')}>
