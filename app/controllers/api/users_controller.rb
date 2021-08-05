@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
             render json: {
                 user: user
             }
-            @user = User.find(user.id)
+            #@user = User.find(user.id)
         else
             render json: {}, status: :internal_server_error
         end
