@@ -1,15 +1,15 @@
 import {React, useEffect, useReducer, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 
 import { initialState, usersActionTypes, usersReducer } from '../reducers/users';
-import { REQUEST_STATE } from '../constants';
 
 import {fetchUsersShow, postUsersUsernameUpdate, postUsersEmailUpdate} from '../apis/users';
 
 import '../styles/MyPage.css';
 
 export const Mypage = () => {
+    const history = useHistory();
 
     const [state, dispatch] = useReducer(usersReducer, initialState);
 
@@ -25,7 +25,11 @@ export const Mypage = () => {
                 });
                 console.log(data);
             }
-        );
+        )
+        .catch((e) => {
+            console.log(e);
+            history.push('/top');
+        });
     }, [])
 
     const [usernameEditorOpen, setUsernameEditorOpen] = useState(false);

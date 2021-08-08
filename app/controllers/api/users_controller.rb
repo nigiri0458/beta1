@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
             render json: {
                 user: user
             }
-            #@user = User.find(user.id)
+            @user = User.find(user.id)
         else
             render json: {}, status: :internal_server_error
         end
@@ -20,7 +20,7 @@ class Api::UsersController < ApplicationController
     # 新規登録認証
     def signup_auth
         if User.exists?(username: params[:username]) || User.exists?(email: params[:email])
-            render json: {}, status: :not_acceptable
+            render json: {}, status: :user_exists
         else
             user = User.new({
                 username: params[:username],
@@ -36,7 +36,7 @@ class Api::UsersController < ApplicationController
                     session[:cart_id] = cart.id
                 end
             else
-                render json: {}, status: :internal_server_error
+                render json: {}, status: :user_save_error
             end
         end
     end
