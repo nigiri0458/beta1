@@ -1,7 +1,6 @@
 class Order < ApplicationRecord
-    belongs_to :cart, optional: true
-    belongs_to :order_history, optional: true
-    has_many :cart_items
+    has_many :order_cart_items, optional: true
+    belongs_to :user, optional: true
 
-    validates :cart_id, :is_purchased, presence: true
+    validates :is_purchased, presence: true
 end

@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
     # before_action :user_authentication, only: [:show, :edit, :update] 
-    before_action :set_current_user, only: [:show, :edit, :update, :admin_page]
+    # before_action :set_current_user, only: [:show, :edit, :update, :admin_page]
     #before_action :admin_auth, only: [:admin_page]
 
     # ログイン認証
@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
             render json: {
                 user: user
             }
-            @user = User.find(user.id)
+            @@user = User.find(user.id)
         else
             render json: {}, status: :internal_server_error
         end
@@ -29,12 +29,6 @@ class Api::UsersController < ApplicationController
             })
             if user.save
                 session[:user_id] = user.id
-                cart = Cart.new({
-                    user_id: user.id
-                })
-                if cart.save
-                    session[:cart_id] = cart.id
-                end
             else
                 render json: {}, status: :internal_server_error
             end
@@ -44,7 +38,7 @@ class Api::UsersController < ApplicationController
     # ユーザーページを表示
     def show
         render json: {
-            user: @user,
+            user: @@user,
             sess: session
         }, status: :ok
     end
@@ -52,19 +46,21 @@ class Api::UsersController < ApplicationController
     # ユーザー情報編集ページを表示
     def edit
         render json: {
-            user: @user
+            user: @@user
         }
     end
 
     # ユーザー情報を更新
     def update
-        user = User.find(@user.id)
+        user = User.find(@@user.id)
         if params[:username]
             user.update(username: params[:username])
+            @@user = user
         end
 
         if params[:email]
             user.update(email: params[:email])
+            @@user = user
         end
         
     end
@@ -75,19 +71,19 @@ class Api::UsersController < ApplicationController
     def logout
         #session[:user_id] = nil
         session.delete(:user_id)
-        session.delete(:cart_id)
+        @@user = nil
         render json: {
-            user: @user,
+            user: @@user,
             sess: session
         }, status: :ok
     end
 
     def admin_page
-        if !(@user.username == 'iwashi_nigiri')
+        if !(@@user.username == 'iwashi_nigiri')
             render json: {}, status: :internal_server_error
         else
             render json: {
-                user: @user
+                user: @@user
             }, status: :ok
         end
     end
