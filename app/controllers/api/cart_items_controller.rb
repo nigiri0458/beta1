@@ -1,10 +1,9 @@
 class Api::CartItemsController < ApplicationController
-    before_action :user_authentication
+    before_action :set_current_user
 
     # フロントから event_id と　quantity を受けとり、CartItemを作成
     def create
         cart_item = CartItem.new(
-            cart_id: @cart.id,
             event_id: params[:event_id],
             quantity: params[:quantity]
         )

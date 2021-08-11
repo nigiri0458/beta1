@@ -13,10 +13,10 @@ class ApplicationController < ActionController::API
     
     
     #def user_authentication
-    #    if @user == nil
+    #    if @@user == nil
     #        redirect_to "https://www.google.com"
     #    else
-    #        @cart = Cart.find_by(user_id: @user.id)
+    #        @@cart = Cart.find_by(user_id: @user.id)
     #    end
     #end
 

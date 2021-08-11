@@ -3,6 +3,7 @@ import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { fetchEventsShow } from '../apis/events';
+import { createCartItem } from '../apis/cart_items';
 
 import '../styles/EventDetails.css';
 
@@ -13,9 +14,16 @@ export const EventDetails = ({match}) => {
 
     const [event, setEvent] = useState({});
     const [quantity, setQuantity] = useState(1);
+    const [eventAdded, setEventAdded] = useState(false);
 
     const handleAddToCart = () => {
-        
+         createCartItem(event.id, quantity)
+         .then(() => {
+            setEventAdded(true);
+         })
+         .catch((e) => {
+             console.log(e);
+         });
     }
 
     useEffect(() => {
@@ -39,7 +47,7 @@ export const EventDetails = ({match}) => {
             <p className="event-details-page-des">{event.description}</p>
             <h3 className="event-details-page-buy">Add to Cart</h3>
             {
-                loginState === 'true'  ?
+                loginState === 'true' ?
                 <div className="event-details-page-add-to-cart">
                     <p className="event-details-page-quantity">個数 Quantity</p>
                     <select className="event-details-page-select" onChange={(e) => setQuantity(e.target.value)}>
@@ -54,9 +62,20 @@ export const EventDetails = ({match}) => {
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select>
-                    <div className="event-details-page-button" onClick={() => handleAddToCart()}>
-                        Add to Cart
-                    </div>
+                    {
+                        eventAdded === false ?
+                        <div className="event-details-page-button" onClick={() => handleAddToCart()}>
+                            Add to Cart
+                        </div>
+                        :
+                        <div></div>
+                    }
+                    {
+                        eventAdded === true ?
+                        <p className="event-details-page-message">カートに追加されました<br />Added to cart</p>
+                        :
+                        <div></div>
+                    }
                 </div>
                 :
                 <div className="event-details-page-button" onClick={() => history.push('/login')}>
