@@ -8,7 +8,11 @@ class Api::CartItemsController < ApplicationController
             quantity: params[:quantity]
         )
 
-        cart_item.save
+        if cart_item.save
+            render template: "user_cart_items/create/#{cart_item.id}"
+        else
+            render json: {error: "cart_item.save"}, status: :internal_server_error
+        end
     end
 
     # フロントから new_quantity を受け取り、更新
@@ -20,7 +24,9 @@ class Api::CartItemsController < ApplicationController
     # フロントから指示されたアイテムを削除
     def delete
         cart_item = CartItem.find(params[:cart_item_id])
-        cart_item.delete
+        if cart_item.delete
+            render template: "user_cart_items/delete/#{cart_item.id}"
+        end
     end
 
 

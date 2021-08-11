@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { cartItemsCreate } from '../urls/index';
+import { cartItemsCreate, userCartItemShow } from '../urls/index';
 
 export const createCartItem = (event_id, quantity) => {
     return axios.post(cartItemsCreate(event_id),
@@ -11,4 +11,12 @@ export const createCartItem = (event_id, quantity) => {
             return res.data;
         })
         .catch((e) => {throw e;})
+}
+
+export const fetchCartItem = () => {
+    return axios.get(userCartItemShow,{ withCredentials: true })
+    .then(res => {
+        return res.data
+    })
+    .catch((e) => console.log(e))
 }

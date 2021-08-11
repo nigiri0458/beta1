@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import {React, useEffect, useReducer} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import '../styles/Events.css';

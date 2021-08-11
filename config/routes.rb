@@ -30,6 +30,11 @@ Rails.application.routes.draw do
     post 'cart_items/:item_id/changeQuantity', to:'cart_items#change_quantity'
     post 'cart_items/:item_id/delete', to: 'cart_items#delete'
 
+    # USER_CART_ITEMS
+    post 'user_cart_items/create/:cart_item_id', to: 'user_cartitems#create'
+    get 'user/cart_items', to: 'user_cartitems#show'
+    post 'user_cart_items/delete/:cart_item_id', to: 'user_catyitems#delete'
+
     # ORDER_HISTORIES
     get 'order_histories', to: 'order_histories#index'
     get 'order_histories/:order_id', to: 'order_histories#show'

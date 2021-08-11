@@ -66,7 +66,7 @@ function App() {
             <EditUser />
           </Route>
 
-          <Route exact path="/users/:user_id/cart">
+          <Route exact path="/cart">
             <Cart />
           </Route>
 

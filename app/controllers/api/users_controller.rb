@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
     # before_action :user_authentication, only: [:show, :edit, :update] 
-    # before_action :set_current_user, only: [:show, :edit, :update, :admin_page]
+    before_action :set_current_user, only: [:show, :edit, :update, :admin_page]
     #before_action :admin_auth, only: [:admin_page]
 
     # ログイン認証
@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
             render json: {
                 user: user
             }
-            @@user = User.find(user.id)
+            #@user = User.find(user.id)
         else
             render json: {}, status: :internal_server_error
         end

@@ -17,13 +17,13 @@ export const Mypage = () => {
         dispatch({type: usersActionTypes.FETCHING});
         fetchUsersShow()
         .then((data)=> {
+            console.log(data);
                 dispatch({
                     type: usersActionTypes.FETCH_SUCCESS,
                     payload: {
                         user: data.user
                     }
                 });
-                console.log(data);
             }
         );
     }, [])
