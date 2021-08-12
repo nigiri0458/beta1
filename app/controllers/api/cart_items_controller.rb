@@ -9,7 +9,7 @@ class Api::CartItemsController < ApplicationController
         )
 
         if cart_item.save
-            render template: "user_cart_items/create/#{cart_item.id}"
+            render json: {cart_item: cart_item}#template: "user_cart_items/create/#{cart_item.id}"
         else
             render json: {error: "cart_item.save"}, status: :internal_server_error
         end

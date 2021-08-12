@@ -3,7 +3,8 @@ import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { fetchEventsShow } from '../apis/events';
-import { createCartItem } from '../apis/cart_items';
+import { createCartItem } from '../apis/cart_items'; 
+import { createUserCartItem } from '../apis/cart_items';
 
 import '../styles/EventDetails.css';
 
@@ -17,9 +18,18 @@ export const EventDetails = ({match}) => {
     const [eventAdded, setEventAdded] = useState(false);
 
     const handleAddToCart = () => {
+         let cart_item_id
          createCartItem(event.id, quantity)
-         .then(() => {
+         .then((data) => {
             setEventAdded(true);
+            cart_item_id = data.cart_item.id;
+            createUserCartItem(cart_item_id)
+         .then(data =>{
+             console.log(data);
+         })
+         .catch((e) => {
+            console.log(e);
+        });
          })
          .catch((e) => {
              console.log(e);

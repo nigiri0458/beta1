@@ -13,11 +13,10 @@ export const createCartItem = (event_id, quantity) => {
         .catch((e) => {throw e;})
 }
 
-export const createUserCartItem = (cart_item_id, user_id) => {
-    return axios.post(userCartItemCreate(cart_item_id, user_id),
+export const createUserCartItem = (cart_item_id) => {
+    return axios.post(userCartItemCreate(cart_item_id),
     {
-        cart_item_id: cart_item_id,
-        user_id: user_id
+        cart_item_id: cart_item_id
     }, { withCredentials: true })
     .then(res => {
         return res.data;
