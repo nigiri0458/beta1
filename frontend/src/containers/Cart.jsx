@@ -1,32 +1,29 @@
-import { React, useEffect, useReducer } from 'react';
+import { React, useEffect, useReducer, useState } from 'react';
 import { fetchCartItem } from '../apis/cart_items';
 import { initialState, cartItemsActionTypes, cartItemsReducer } from '../reducers/cart_items';
 
 export const Cart = () => {
     const [state, dispatch] = useReducer(cartItemsReducer, initialState);
-    
+
     useEffect(() => {
         dispatch({type: cartItemsActionTypes.FETCHING});
         fetchCartItem()
-        .then((data)=> {
-            console.log(data);
+        .then((data)=>
                 dispatch({
                     type: cartItemsActionTypes.FETCH_SUCCESS,
                     payload: {
                         cart: data.cart
                     }
-                });
-                console.log(data);
-            }
+                })
         )
         .catch((e) => {
             console.log(e);
         });
-    }, {})
+        console.log(state);
+    }, [])
 
     return(
         <div className="cart-page-wrapper">
-            {state.cart}
         </div>
     )
 }
