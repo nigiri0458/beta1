@@ -20,7 +20,7 @@ class Api::EventsController < ApplicationController
     for n in 0..(@@cart_items.count - 1) do
       event = Event.find(@@cart_items[n].event_id)
       if event
-        @@cart.push({ "event_id" => event.id, "event_name" => event.name, "event_image" => event.image, "quantity" => @@cart_items[n].quantity })
+        @@cart.push({"cart_item_id" => @@cart_item_ids[n], "event_id" => event.id, "event_name" => event.name, "event_image" => event.image, "quantity" => @@cart_items[n].quantity })
       else
         puts "error in events_show_added"
       end

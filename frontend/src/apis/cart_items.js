@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { cartItemsCreate, userCartItemShow, userCartItemCreate } from '../urls/index';
+import { cartItemsCreate, userCartItemShow, userCartItemCreate, cartItemsChangeQuantity } from '../urls/index';
 
 export const createCartItem = (event_id, quantity) => {
     return axios.post(cartItemsCreate(event_id),
@@ -26,6 +26,18 @@ export const createUserCartItem = (cart_item_id) => {
 
 export const fetchCartItem = () => {
     return axios.get(userCartItemShow,{ withCredentials: true })
+    .then(res => {
+        return res.data
+    })
+    .catch((e) => console.log(e))
+}
+
+export const changeCartItemQuantity = (cart_item_id, new_quantity) => {
+    return axios.post(cartItemsChangeQuantity(cart_item_id),
+    {
+        cart_item_id: cart_item_id,
+        new_quantity: new_quantity
+    }, { withCredentials: true })
     .then(res => {
         return res.data
     })

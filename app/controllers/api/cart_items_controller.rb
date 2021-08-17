@@ -32,6 +32,7 @@ class Api::CartItemsController < ApplicationController
     def change_quantity
         cart_item = CartItem.find(params[:cart_item_id])
         cart_item.update(quantity: params[:new_quantity])
+        render plain: "OK!!!"
     end
 
     # フロントから指示されたアイテムを削除
