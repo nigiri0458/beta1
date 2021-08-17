@@ -20,12 +20,14 @@ Rails.application.routes.draw do
     # EVENTS
     get 'events', to: 'events#index'
     get 'events/:event_id', to: 'events#show'
+    get 'show_added', to: 'events#selected'
     post 'events/create', to: 'events#create'
 
     # CARTS
     get 'users/:user_id/cart', to: 'carts#index'
   
     # CART_ITEMS
+    get 'cart_items_show', to: 'cart_items#show'
     post 'events/:event_id/create', to: 'cart_items#create'
     post 'cart_items/:item_id/changeQuantity', to:'cart_items#change_quantity'
     post 'cart_items/:item_id/delete', to: 'cart_items#delete'

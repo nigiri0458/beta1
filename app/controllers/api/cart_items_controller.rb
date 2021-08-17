@@ -1,6 +1,19 @@
 class Api::CartItemsController < ApplicationController
     before_action :set_current_user
 
+    def show
+        @@cart_items = []
+        for ids in 0..(@@cart_item_ids.count - 1) do
+            cart_item = CartItem.find(@@cart_item_ids[ids])
+            if cart_item
+                @@cart_items.push(cart_item)
+            else
+                puts "error in cart_items/show"
+            end
+        end
+        redirect_to controller: :events, action: :selected
+    end
+
     # フロントから event_id と　quantity を受けとり、CartItemを作成
     def create
         cart_item = CartItem.new(

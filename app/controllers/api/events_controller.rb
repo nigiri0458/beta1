@@ -15,6 +15,19 @@ class Api::EventsController < ApplicationController
     }, status: :ok
   end
 
+  def selected
+    @@cart = []
+    for n in 0..(@@cart_items.count - 1) do
+      event = Event.find(@@cart_items[n].event_id)
+      if event
+        @@cart.push({ "event_id" => event.id, "event_name" => event.name, "event_image" => event.image, "quantity" => @@cart_items[n].quantity })
+      else
+        puts "error in events_show_added"
+      end
+    end
+    render json: {cart: @@cart}, status: :ok
+  end
+
   def create
     event = Event.new({
       name: params[:name],

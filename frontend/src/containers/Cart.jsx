@@ -1,4 +1,5 @@
 import { React, useEffect, useReducer, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { fetchCartItem } from '../apis/cart_items';
 import { initialState, cartItemsActionTypes, cartItemsReducer } from '../reducers/cart_items';
 
@@ -26,6 +27,19 @@ export const Cart = () => {
 
     return(
         <div className="cart-page-wrapper">
+            {
+                state.cartItems.map((event) =>
+                    <div>
+                        <Link key={event.index} to={`/events/${event.event_id}`}>
+                            <div >
+                                <img src={event.event_image}/>
+                                <p>{event.event_name}</p>
+                                <p>{event.quantity}</p>
+                            </div>
+                        </Link>
+                    </div>
+                    )
+            }
         </div>
     )
 }
