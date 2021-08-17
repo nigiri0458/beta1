@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
     # before_action :set_current_user, only: [:user_authentication]
+    @@user = nil
 
     def set_current_user
         if session[:user_id] != nil

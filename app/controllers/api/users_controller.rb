@@ -5,11 +5,11 @@ class Api::UsersController < ApplicationController
 
     # ログイン認証
     def login_auth
-        user = User.find_by(username: params[:username])
-        if user && user.authenticate(params[:password])
-            session[:user_id] = user.id
+        login_user = User.find_by(username: params[:username])
+        if login_user && login_user.authenticate(params[:password])
+            session[:user_id] = login_user.id
             render json: {
-                user: user
+                user: login_user
             }
             #@user = User.find(user.id)
         else
@@ -22,13 +22,13 @@ class Api::UsersController < ApplicationController
         if User.exists?(username: params[:username]) || User.exists?(email: params[:email])
             render json: {}, status: :not_acceptable
         else
-            user = User.new({
+            new_user = User.new({
                 username: params[:username],
                 password: params[:password],
                 email: params[:email]
             })
-            if user.save
-                session[:user_id] = user.id
+            if new_user.save
+                session[:user_id] = new_user.id
             else
                 render json: {}, status: :internal_server_error
             end
@@ -52,15 +52,15 @@ class Api::UsersController < ApplicationController
 
     # ユーザー情報を更新
     def update
-        user = User.find(@@user.id)
+        update_user = User.find(@@user.id)
         if params[:username]
-            user.update(username: params[:username])
-            @@user = user
+            update_user.update(username: params[:username])
+            @@user = update_user
         end
 
         if params[:email]
-            user.update(email: params[:email])
-            @@user = user
+            update_user.update(email: params[:email])
+            @@user = update_user
         end
         
     end
