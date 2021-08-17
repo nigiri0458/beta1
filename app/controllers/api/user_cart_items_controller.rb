@@ -12,9 +12,10 @@ class Api::UserCartItemsController < ApplicationController
     end
 
     def show
-        user_cart_item = UserCartItem.where(user_id: @@user.id).to_a
+        user_cart_item = UserCartItem.where(user_id: @@user.id)
+
         render json: {
-            cart: user_cart_item#"cart"#user_cart_item
+            cart: user_cart_item
         }, status: :ok
     end
 

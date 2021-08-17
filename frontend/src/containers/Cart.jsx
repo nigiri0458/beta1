@@ -8,7 +8,7 @@ export const Cart = () => {
     useEffect(() => {
         dispatch({type: cartItemsActionTypes.FETCHING});
         fetchCartItem()
-        .then((data)=>
+        .then((data) =>
                 dispatch({
                     type: cartItemsActionTypes.FETCH_SUCCESS,
                     payload: {
