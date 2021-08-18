@@ -49,3 +49,14 @@
     font-weight: 900;
     line-height: 40px;
 }
+
+/***********************************************/
+@media screen and (max-width: 480px) {
+    .top-events-link{
+        width: 80%;
+    }
+
+    .top-link{
+        width: 80%;
+    }
+}

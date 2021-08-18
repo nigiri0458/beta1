@@ -39,7 +39,7 @@ export const Header = () => {
                                 マイページ<br/>My Page
                             </div>
                         </Link>
-                        <Link to="/cart" className="header-link2">
+                        <Link to="/cart" className="header-link2 header-page-cart">
                             <div className="header-button2">
                                 カート<br/>Cart
                             </div>
