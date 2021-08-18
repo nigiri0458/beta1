@@ -38,8 +38,14 @@ class Api::CartItemsController < ApplicationController
     # フロントから指示されたアイテムを削除
     def delete
         cart_item = CartItem.find(params[:cart_item_id])
-        if cart_item.delete
-            render template: "user_cart_items/delete/#{cart_item.id}"
+        if cart_item
+            if cart_item.destroy
+                render json: {status: 'deleted cart item'}, status: :ok
+            else
+                render json: {error: 'failed to delete cart item'}, status: :internal_server_error
+            end
+        else
+            render json: {error: 'failed to find cart item'}, status: :internal_server_error
         end
     end
 

@@ -22,14 +22,5 @@ class Api::UserCartItemsController < ApplicationController
         end
 
         redirect_to controller: :cart_items, action: :show
-
-        #render json: {
-        #    cart: user_cart_item
-        #}, status: :ok
-    end
-
-    def delete
-        user_cart_item = UserCartItem.find_by(cart_item_id: params[:cart_item_id])
-        user_cart_item.delete
     end
 end

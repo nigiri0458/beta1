@@ -1,12 +1,15 @@
 import {React, useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { deleted } from '../features/cartItemState/cartItemStateSlice';
 import '../styles/CartItem.css';
 
-import { changeCartItemQuantity } from '../apis/cart_items';
+import { changeCartItemQuantity, deleteCartItem } from '../apis/cart_items';
 
 export const CartItem = (props) => {
     const item = props.item
     
+    const dispatch = useDispatch();
     const [targetQuantity, setTargetQuantity] = useState()
     const [changed, setchanged] = useState(false);
 
@@ -27,6 +30,16 @@ export const CartItem = (props) => {
 
     const handleSubmit = () => {
         setchanged(false)
+    }
+
+    const handleDelete = (cart_item_id) => {
+        deleteCartItem(cart_item_id)
+        .then(() => {
+            dispatch(deleted());
+        })
+        .catch((e) => {
+            console.log(e);
+        })
     }
 
     
@@ -69,6 +82,9 @@ export const CartItem = (props) => {
                         : 
                         <div></div>
                     }
+                    <div className="cart-item-delete">
+                        <button className="cart-item-delete-button" onClick={() => handleDelete(item.cart_item_id)}>削除<br/>Delete</button>
+                    </div>
                 </div>
             </div>
         </div>
