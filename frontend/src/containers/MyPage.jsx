@@ -70,7 +70,7 @@ export const Mypage = () => {
             {
                 usernameModalOpen ?
                 <div className="mypage-modal">
-                    <p className="mypage-modal-message">ユーザー名を    {username}    に変更します。よろしいですか？</p>
+                    <p className="mypage-modal-message">ユーザー名を<br/>    {username}    <br/>に変更します。<br/>よろしいですか？</p>
                     <div className="mypage-modal-container">
                         <button className="mypage-submit-button1" onClick={() => usernameModalSubmit()}>はい<br/>Yes</button>
                         <button className="mypage-submit-button2" onClick={() => usernameModalClose()}>いいえ<br/>No</button>
@@ -83,7 +83,7 @@ export const Mypage = () => {
             {
                 emailModalOpen ?
                 <div className="mypage-modal">
-                    <p className="mypage-modal-message">メールアドレスを    {email}    に変更します。よろしいですか？</p>
+                    <p className="mypage-modal-message">メールアドレスを<br/>    {email}    <br/>に変更します。<br/>よろしいですか？</p>
                     <div className="mypage-modal-container">
                         <button className="mypage-submit-button1" onClick={() => emailModalSubmit()}>はい<br/>Yes</button>
                         <button className="mypage-submit-button2" onClick={() => emailModalClose()}>いいえ<br/>No</button>
@@ -98,6 +98,7 @@ export const Mypage = () => {
                     usernameEditorOpen ?
                     <div>
                         <TextField 
+                            className="mypage-edit-textfield"
                             id="standard-basic"
                             label=""
                             type="text"
@@ -120,6 +121,7 @@ export const Mypage = () => {
                     emailEditorOpen ?
                     <div>
                         <TextField 
+                            className="mypage-edit-textfield"
                             id="standard-basic"
                             label=""
                             type="text"

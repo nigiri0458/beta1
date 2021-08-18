@@ -13,6 +13,7 @@
 .cart-item-image{
     height: 180px;
     margin-top: 10px;
+    margin: 0 auto;
 }
 
 .cart-item-text-part{
@@ -66,6 +67,7 @@
 .cart-item-change-quantity-modal-text{
     font-size: 15px;
     line-height: 40px;
+    color: rgba(48, 192, 4, 0.8);
 }
 
 .cart-item-submit-button{
@@ -81,4 +83,57 @@
 .cart-item-submit-button:hover{
     opacity: 0.4;
     transition: all 0.2s;
+}
+
+/*********************************************/
+@media screen and (max-width: 480px) {
+    .cart-item-container{
+        margin-top: 50px;
+    }
+
+    .cart-item-image-wrapper{
+        width: 100%;
+        float: none;
+        margin: 0 auto;
+    }
+
+    .cart-item-text-part{
+        width: 100%;
+        float: none;
+    }
+
+    .cart-item-link-wrapper{
+        width: 100%;
+        float: none;
+    }
+
+    .cart-item-link{
+        margin-top: 15px;
+        cursor: none;
+        float: none;
+    }
+
+    .cart-item-add-to-cart{
+        width: 100%;
+        float: none;
+        margin-top: 20px;
+    }
+
+    .cart-item-select{
+        margin-top: 10px;
+    }
+
+    .cart-item-change-quantity-modal{
+        width: 100%;
+        float: none;
+        margin-top: 20px;
+    }
+
+    .cart-item-change-quantity-modal-text{
+        line-height: 30px;
+    }
+
+    .cart-item-submit-button{
+        height: 50px;
+    }
 }

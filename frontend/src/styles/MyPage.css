@@ -194,3 +194,42 @@
     opacity: 0.7;
     transition: all 0.2s;
 }
+
+/**********************************************************/
+@media screen and (max-width: 480px) {
+    .mypage-edit-form{
+        margin-bottom: 50px;
+    }
+
+    .mypage-username2{
+        margin-bottom: 10px;
+    }
+
+    .mypage-email2{
+        margin-bottom: 10px;
+    }
+
+    .mypage-edit-button3{
+        position: initial;
+        margin: 0 auto;
+    }
+
+    .mypage-edit-button1, .mypage-edit-button2{
+        position: initial;
+    }
+
+    .mypage-edit-button1{
+        margin-top: 10px;
+        float: left;
+    }
+
+    .mypage-edit-button2{
+        margin-top: 10px;
+        float: right;
+    }
+
+    .mypage-edit-textfield{
+        display: block;
+        width: 100%;
+    }
+}

@@ -45,3 +45,31 @@
     font-size: 600;
     color: rgba(0, 0, 0, 0.7);
 }
+
+/*********************************************/
+@media screen and (max-width: 480px) {
+    .events-page-container{
+        display: block;
+        flex-wrap: nowrap;
+    }
+
+    .events-page-event-link{
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 1);
+        flex-wrap: nowrap;
+    }
+
+    .events-page-event{
+        cursor: none;
+    }
+
+    .events-page-name{
+        font-size: 25px;
+    }
+
+    .events-page-date{
+        font-size: 20px;
+    }
+}

@@ -89,3 +89,37 @@
     color: rgba(48, 192, 4, 0.8);
     margin-top: 10px;
 }
+
+/*********************************************/
+@media screen and (max-width: 480px) {
+    .event-details-page-title{
+        font-size: 30px;
+    }
+
+    .event-details-page-artist{
+        font-size: 25px;
+        padding-bottom: 10px;
+    }
+    
+    .event-details-page-date{
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+
+    .event-details-page-ticket{
+        font-size: 25px;
+        margin-bottom: 30px;
+    }
+
+    .event-details-page-des{
+        width: 100%;
+        line-height: 40px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+
+    .event-details-page-buy{
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}
