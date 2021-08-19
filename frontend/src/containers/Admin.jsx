@@ -39,6 +39,7 @@ export const Admin = () => {
         )
         .catch((e) => {
             console.log(e);
+            history.push('/top');
         })
     }, [])
 

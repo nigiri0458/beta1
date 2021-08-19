@@ -42,8 +42,8 @@ export const CartItem = (props) => {
         })
     }
 
-    
-    
+
+
     return(
         <div>
             <div className="cart-item-container">
@@ -80,11 +80,10 @@ export const CartItem = (props) => {
                             </div>
                         </div> 
                         : 
-                        <div></div>
+                        <div className="cart-item-delete">
+                            <button className="cart-item-delete-button" onClick={() => handleDelete(item.cart_item_id)}>削除<br/>Delete</button>
+                        </div>
                     }
-                    <div className="cart-item-delete">
-                        <button className="cart-item-delete-button" onClick={() => handleDelete(item.cart_item_id)}>削除<br/>Delete</button>
-                    </div>
                 </div>
             </div>
         </div>
