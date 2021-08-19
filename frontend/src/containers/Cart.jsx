@@ -7,7 +7,7 @@ import '../styles/Cart.css';
 
 export const Cart = () => {
     const [state, dispatch] = useReducer(cartItemsReducer, initialState);
-    const itemDeleted = useSelector((state) => state.cartItemState.boolean);
+    const itemStateCount = useSelector((state) => state.cartItemState.count);
 
     useEffect(() => {
         dispatch({type: cartItemsActionTypes.FETCHING});
@@ -31,9 +31,6 @@ export const Cart = () => {
     return(
         <div className="cart-page-wrapper">
             <h1 className="cart-page-title">カート Cart</h1>
-            {
-                !(itemDeleted) ?
-                <div>
                 {
                     state.cartItems.map((item) =>
                         <div className="cart-page-cart-item-wrapper" key={item.cart_item_id}>
@@ -44,10 +41,6 @@ export const Cart = () => {
                         </div>
                     )
                 }
-                </div>
-                :
-                <div></div>
-            }
         </div>
     )
 }

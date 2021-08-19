@@ -3,12 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 export const cartItemStateSlice = createSlice({
     name: 'cartItemState',
     initialState: {
-        boolean: false,
+        count: 0,
     },
     reducers: {
         deleted: (state) => {
-            state.boolean = true;
-            state.boolean = false;
+            state.count++;
         }
     },
 });
