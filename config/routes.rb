@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     # USER_CART_ITEMS
     post 'user_cart_items/create/:cart_item_id', to: 'user_cart_items#create'
     get 'user/cart_items', to: 'user_cart_items#show'
+    post 'cart_items/purchase', to: 'user_cart_items#purchase'
 
     # ORDER_HISTORIES
     get 'order_histories', to: 'order_histories#index'
@@ -44,6 +45,9 @@ Rails.application.routes.draw do
     # ORDERS
     post 'order_histories/:order_id/isPurchased', to: 'orders#is_purchased'
     post 'orders/create', to: 'orders#create'
+
+    #ORDER_CART_ITEMS
+    post 'order_cart_items/create', to: 'order_cart_items#create'
   end
   
 end

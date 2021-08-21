@@ -49,5 +49,4 @@ class Api::CartItemsController < ApplicationController
         end
     end
 
-
 end

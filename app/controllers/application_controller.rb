@@ -5,6 +5,7 @@ class ApplicationController < ActionController::API
     @@cart_item_ids = []
     @@cart_items = []
     @@cart = []
+    @@order = nil
 
     def set_current_user
         if session[:user_id] != nil

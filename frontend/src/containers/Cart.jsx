@@ -1,12 +1,12 @@
 import { React, useEffect, useReducer, useState} from 'react';
-import { fetchCartItem } from '../apis/cart_items';
+import { fetchCartItem, purchaseCartItem } from '../apis/cart_items';
 import { initialState, cartItemsActionTypes, cartItemsReducer } from '../reducers/cart_items';
 import { CartItem } from './CartItem';
 import '../styles/Cart.css';
 
 export const Cart = () => {
     const [state, dispatch] = useReducer(cartItemsReducer, initialState);
-    const [deletedCount, setDeletedCount] = useState(0);
+    const [stateCount, setStateCount] = useState(0);
 
     useEffect(() => {
         dispatch({type: cartItemsActionTypes.FETCHING});
@@ -23,11 +23,23 @@ export const Cart = () => {
         .catch((e) => {
             console.log(e);
         });
-    }, [deletedCount])
+    }, [stateCount])
 
     const handleDelete = () => {
-        const count = deletedCount;
-        setDeletedCount(count + 1);
+        const count = stateCount;
+        setStateCount(count + 1);
+    }
+
+    const handlePurchase = () => {
+        purchaseCartItem()
+        .then(() => {
+            const count = stateCount;
+            setStateCount(count + 1);
+            console.log('ok');
+        })
+        .catch((e) => {
+            console.log(e);
+        })
     }
 
     return(
@@ -44,6 +56,9 @@ export const Cart = () => {
                         </div>
                     )
                 }
+            <div className="cart-page-purchase-button" onClick={() => handlePurchase()}>
+                抽選申し込み・購入<br/>Apply・Purchase
+            </div>
         </div>
     )
 }

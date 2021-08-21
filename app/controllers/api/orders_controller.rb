@@ -1,5 +1,5 @@
 class Api::OrdersController < ApplicationController
-    before_action :user_authentication
+    before_action :set_current_user
     
     # 注文番号を取得して支払い済みにする
     def is_purchased
@@ -9,13 +9,16 @@ class Api::OrdersController < ApplicationController
 
     # カートの購入ボタンが押された時に注文を作る
     def create
+        @@order = nil
         order = Order.new(
-            cart_id: @cart.id,
-            isPurchased: false,
-            cart_item_id: @cart.cart_item_id
+            user_id: @@user.id,
+            isPurchased: false
         )
         if order.save
-            @cart.update(cart_item_id: nil)
+            @@order = order
+            redirect_to controller: :order_cart_items, action: :create
+        else
+            render json: {error: 'erro in orders_create'}, status: :internal_server_error
         end
     end
 
