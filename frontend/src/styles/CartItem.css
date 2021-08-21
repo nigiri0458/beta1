@@ -38,6 +38,7 @@
 .cart-item-name{
     font-size: 30px;
     font-weight: 600;
+    padding-left: 20px;
 }
 
 .cart-item-add-to-cart{

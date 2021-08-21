@@ -1,5 +1,4 @@
 import { React, useEffect, useReducer, useState} from 'react';
-import { useSelector } from 'react-redux';
 import { fetchCartItem } from '../apis/cart_items';
 import { initialState, cartItemsActionTypes, cartItemsReducer } from '../reducers/cart_items';
 import { CartItem } from './CartItem';
@@ -7,7 +6,7 @@ import '../styles/Cart.css';
 
 export const Cart = () => {
     const [state, dispatch] = useReducer(cartItemsReducer, initialState);
-    const itemStateCount = useSelector((state) => state.cartItemState.count);
+    const [deletedCount, setDeletedCount] = useState(0);
 
     useEffect(() => {
         dispatch({type: cartItemsActionTypes.FETCHING});
@@ -19,14 +18,17 @@ export const Cart = () => {
                         cart: data.cart
                     }
                 });
-                console.log(data);
             }
         )
         .catch((e) => {
             console.log(e);
         });
-        console.log(state);
-    }, [])
+    }, [deletedCount])
+
+    const handleDelete = () => {
+        const count = deletedCount;
+        setDeletedCount(count + 1);
+    }
 
     return(
         <div className="cart-page-wrapper">
@@ -37,6 +39,7 @@ export const Cart = () => {
                             <CartItem
                                 key={item.cart_item_id}
                                 item={item}
+                                itemDelete={handleDelete}
                             />
                         </div>
                     )
