@@ -15,19 +15,7 @@ class Api::EventsController < ApplicationController
     }, status: :ok
   end
 
-  def selected
-    @@cart = []
-    for n in 0..(@@cart_items.count - 1) do
-      event = Event.find(@@cart_items[n].event_id)
-      if event
-        @@cart.push({"cart_item_id" => @@cart_item_ids[n], "event_id" => event.id, "event_name" => event.name, "event_image" => event.image, "quantity" => @@cart_items[n].quantity })
-      else
-        puts "error in events_show_added"
-      end
-    end
-    render json: {cart: @@cart}, status: :ok
-  end
-
+  
   def create
     event = Event.new({
       name: params[:name],
@@ -36,7 +24,8 @@ class Api::EventsController < ApplicationController
       date: params[:date],
       description: params[:description],
       info: params[:info],
-      price: params[:price]
+      price: params[:price],
+      stock: params[:stock]
     })
     if event.save!
       render json: {event_saved: "save success"}, status: :ok
@@ -44,5 +33,18 @@ class Api::EventsController < ApplicationController
       render json: {}, status: :internal_server_error
     end
   end
+
+  def added
+    event = Event.find(params[:event_id])
+    oldquantity = event.stock
+    event.update(stock: oldquantity - params[:quantity])
+  end
+
+  def deleted
+    event = Event.find(params[:event_id])
+    oldquantity = event.stock
+    event.update(stock: oldquantity + params[:quantity])
+  end  
+  
 
 end

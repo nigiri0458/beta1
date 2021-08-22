@@ -7,6 +7,8 @@ import '../styles/Cart.css';
 export const Cart = () => {
     const [state, dispatch] = useReducer(cartItemsReducer, initialState);
     const [stateCount, setStateCount] = useState(0);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
         dispatch({type: cartItemsActionTypes.FETCHING});
@@ -30,16 +32,25 @@ export const Cart = () => {
         setStateCount(count + 1);
     }
 
+    const addPrice = (price) => {
+        const currentPrice = totalPrice;
+        setTotalPrice(currentPrice + price);
+    }
+
     const handlePurchase = () => {
         purchaseCartItem()
         .then(() => {
             const count = stateCount;
             setStateCount(count + 1);
-            console.log('ok');
+            setModalOpen(true);
         })
         .catch((e) => {
             console.log(e);
         })
+    }
+
+    const closeModal = () => {
+        setModalOpen(false);
     }
 
     return(
@@ -52,13 +63,23 @@ export const Cart = () => {
                                 key={item.cart_item_id}
                                 item={item}
                                 itemDelete={handleDelete}
+                                addPrice={addPrice}
                             />
                         </div>
                     )
                 }
-            <div className="cart-page-purchase-button" onClick={() => handlePurchase()}>
+            <p className="cart-page-total-price">合計：{totalPrice} 円</p>
+            {
+                !(modalOpen) ?
+                <div className="cart-page-purchase-button" onClick={() => handlePurchase()}>
                 抽選申し込み・購入<br/>Apply・Purchase
-            </div>
+                </div>
+                :
+                <div className="cart-page-purchase-message">
+                    <p className="cart-page-purchase-message-text">抽選申し込み・購入を受け付けました。<br/>抽選があるイベントを申し込みの場合は<br/>抽選結果をメールでお知らせいたします。</p>
+                    <button onClick={() => closeModal()}>OK</button>
+                </div>
+            }
         </div>
     )
 }

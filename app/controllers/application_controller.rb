@@ -2,10 +2,6 @@ class ApplicationController < ActionController::API
     include ActionController::Cookies
     # before_action :set_current_user, only: [:user_authentication]
     @@user = nil
-    @@cart_item_ids = []
-    @@cart_items = []
-    @@cart = []
-    @@order = nil
 
     def set_current_user
         if session[:user_id] != nil

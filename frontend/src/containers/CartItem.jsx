@@ -12,7 +12,9 @@ export const CartItem = (props) => {
 
     useEffect(() => {
         setTargetQuantity(item.quantity);
-    }, [])
+        const price = Number(item.price) * Number(item.quantity);
+        props.addPrice(price);
+    }, [changed])
 
     const handlechangeQuantity = (cart_item_id, newQuantity) => {
         newQuantity = Number(newQuantity)
@@ -39,6 +41,9 @@ export const CartItem = (props) => {
         })
     }
 
+    let selects = [...Array(10).keys()].map(i => 10-i)
+
+
     return(
         <div>
             <div className="cart-item-container">
@@ -54,16 +59,9 @@ export const CartItem = (props) => {
                     <div className="cart-item-add-to-cart">
                         <p className="cart-item-quantity">個数 Quantity</p>
                         <select className="cart-item-select" value={targetQuantity} onChange={(e) => handlechangeQuantity(item.cart_item_id, e.target.value)}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
+                            {selects.map((e) => {
+                                return <option value={e.toString()} key={e}>{e}</option>
+                            })}
                         </select>
                     </div>
                     {
@@ -75,8 +73,11 @@ export const CartItem = (props) => {
                             </div>
                         </div> 
                         : 
-                        <div className="cart-item-delete">
-                            <button className="cart-item-delete-button" onClick={() => handleDelete(item.cart_item_id)}>削除<br/>Delete</button>
+                        <div>
+                            <div className="cart-item-delete">
+                                <button className="cart-item-delete-button" onClick={() => handleDelete(item.cart_item_id)}>削除<br/>Delete</button>
+                            </div>
+                            <p className="cart-item-total-price"> {Number(item.price) * Number(item.quantity)} 円</p>
                         </div>
                     }
                 </div>

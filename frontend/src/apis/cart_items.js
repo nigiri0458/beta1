@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { cartItemsCreate, userCartItemShow, userCartItemCreate, cartItemsChangeQuantity, cartItemsDelete, cartItemsPurchase } from '../urls/index';
+import { cartItemsCreate, cartItemShow, cartItemsChangeQuantity, cartItemsDelete, cartItemsPurchase } from '../urls/index';
 
 export const createCartItem = (event_id, quantity) => {
     return axios.post(cartItemsCreate(event_id),
@@ -13,19 +13,8 @@ export const createCartItem = (event_id, quantity) => {
         .catch((e) => {throw e;})
 }
 
-export const createUserCartItem = (cart_item_id) => {
-    return axios.post(userCartItemCreate(cart_item_id),
-    {
-        cart_item_id: cart_item_id
-    }, { withCredentials: true })
-    .then(res => {
-        return res.data;
-    })
-    .catch((e) => {throw e;})
-}
-
 export const fetchCartItem = () => {
-    return axios.get(userCartItemShow,{ withCredentials: true })
+    return axios.get(cartItemShow,{ withCredentials: true })
     .then(res => {
         return res.data
     })

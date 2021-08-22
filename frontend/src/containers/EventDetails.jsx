@@ -3,8 +3,7 @@ import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { fetchEventsShow } from '../apis/events';
-import { createCartItem } from '../apis/cart_items'; 
-import { createUserCartItem } from '../apis/cart_items';
+import { createCartItem } from '../apis/cart_items';
 
 import '../styles/EventDetails.css';
 
@@ -18,18 +17,9 @@ export const EventDetails = ({match}) => {
     const [eventAdded, setEventAdded] = useState(false);
 
     const handleAddToCart = () => {
-         let cart_item_id
-         createCartItem(event.id, quantity)
+        createCartItem(event.id, Number(quantity))
          .then((data) => {
             setEventAdded(true);
-            cart_item_id = data.cart_item.id;
-            createUserCartItem(cart_item_id)
-         .then(data =>{
-             console.log(data);
-         })
-         .catch((e) => {
-            console.log(e);
-        });
          })
          .catch((e) => {
              console.log(e);
@@ -47,6 +37,8 @@ export const EventDetails = ({match}) => {
         )
     }, [])
 
+    let selects = [...Array(10).keys()].map(i => 10-i)
+
     return(
         <div className="event-details-page-wrapper">
             <h1 className="event-details-page-title">{event.name}</h1>
@@ -55,22 +47,16 @@ export const EventDetails = ({match}) => {
             <h2 className="event-details-page-ticket">料金: {event.price} 円</h2>
             <img src={event.image} className="event-details-page-img"/>
             <p className="event-details-page-des">{event.description}</p>
+            <p>{event.stock}</p>
             <h3 className="event-details-page-buy">カートに追加<br/>Add to Cart</h3>
             {
                 loginState === 'true' ?
                 <div className="event-details-page-add-to-cart">
                     <p className="event-details-page-quantity">個数 Quantity</p>
-                    <select className="event-details-page-select" onChange={(e) => setQuantity(e.target.value)}>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
+                    <select className="event-details-page-select" defaultValue="1" onChange={(e) => setQuantity(e.target.value)}>
+                        {selects.map((e) => {
+                            return <option value={e.toString()}>{e}</option>
+                        })}
                     </select>
                     {
                         eventAdded === false ?

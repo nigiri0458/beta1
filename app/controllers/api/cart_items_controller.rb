@@ -2,16 +2,14 @@ class Api::CartItemsController < ApplicationController
     before_action :set_current_user
 
     def show
-        @@cart_items = []
-        for ids in 0..(@@cart_item_ids.count - 1) do
-            cart_item = CartItem.find(@@cart_item_ids[ids])
-            if cart_item
-                @@cart_items.push(cart_item)
-            else
-                puts "error in cart_items/show"
-            end
+        user_cart_items = UserCartItem.where(user_id: @@user.id)
+        cart = []
+        for items in user_cart_items do
+            cart_item = CartItem.find(items.cart_item_id)
+            event = Event.find(cart_item.event_id)
+            cart.push({"cart_item_id" => cart_item.id, "event_id" => event.id, "event_name" => event.name, "event_image" => event.image, "quantity" => cart_item.quantity, "price" => event.price })
         end
-        redirect_to controller: :events, action: :selected
+        render json: {cart: cart}, status: :ok
     end
 
     # フロントから event_id と　quantity を受けとり、CartItemを作成
@@ -22,7 +20,17 @@ class Api::CartItemsController < ApplicationController
         )
 
         if cart_item.save
-            render json: {cart_item: cart_item}#template: "user_cart_items/create/#{cart_item.id}"
+            user_cart_item = UserCartItem.new(
+                cart_item_id: cart_item.id,
+                user_id: @@user.id
+            )
+            if user_cart_item.save
+                old = Event.find(params[:event_id]).stock
+                Event.find(params[:event_id]).update(stock: old - params[:quantity])
+            else
+                render json: {error: "user_cart_item.save"}, status: :internal_server_error
+            end
+
         else
             render json: {error: "cart_item.save"}, status: :internal_server_error
         end
@@ -40,7 +48,7 @@ class Api::CartItemsController < ApplicationController
         cart_item = CartItem.find(params[:cart_item_id])
         if cart_item
             if cart_item.destroy
-                render json: {status: 'deleted cart item'}, status: :ok
+                redirect_to controller: :events, action: :deleted
             else
                 render json: {error: 'failed to delete cart item'}, status: :internal_server_error
             end

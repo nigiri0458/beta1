@@ -21,9 +21,7 @@ export const cartItemsCreate = (eventId) => `${DEFAULT_API}/events/${eventId}/cr
 export const cartItemsChangeQuantity = (cartItemId) => `${DEFAULT_API}/cart_items/${cartItemId}/changeQuantity`;
 export const cartItemsDelete = `${DEFAULT_API}/cart_items/delete`;
 export const cartItemsPurchase = `${DEFAULT_API}/cart_items/purchase`;
-
-export const userCartItemCreate = (cartItemId) => `${DEFAULT_API}/user_cart_items/create/${cartItemId}`;
-export const userCartItemShow = `${DEFAULT_API}/user/cart_items`;
+export const cartItemShow = `${DEFAULT_API}/cart_items_show`;
 
 export const orderHistoriesIndex = `${DEFAULT_API}/order_histories`;
 export const orderHistoriesShow = (orderId) => `${DEFAULT_API}/order_histories/${orderId}`;
