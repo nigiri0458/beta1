@@ -39,15 +39,17 @@ export const Cart = () => {
     }
 
     const handlePurchase = () => {
-        purchaseCartItem()
-        .then(() => {
-            const count = stateCount;
-            setStateCount(count + 1);
-            setModalOpen(true);
-        })
-        .catch((e) => {
-            console.log(e);
-        })
+        if(totalPrice > 0){
+            purchaseCartItem()
+            .then(() => {
+                const count = stateCount;
+                setStateCount(count + 1);
+                setModalOpen(true);
+            })
+            .catch((e) => {
+                console.log(e);
+            })
+        }
     }
 
     const closeModal = () => {
@@ -77,7 +79,7 @@ export const Cart = () => {
                 </div>
                 :
                 <div className="cart-page-purchase-message">
-                    <p className="cart-page-purchase-message-text">抽選申し込み・購入を受け付けました。<br/>抽選があるイベントを申し込みの場合は<br/>抽選結果をメールでお知らせいたします。</p>
+                    <p className="cart-page-purchase-message-text">抽選申し込み・購入を受け付けました。<br/>抽選があるイベントをお申し込みの場合は<br/>抽選結果をメールでお知らせいたします。</p>
                     <button onClick={() => closeModal()}>OK</button>
                 </div>
             }

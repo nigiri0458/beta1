@@ -9,7 +9,7 @@ class Api::CartItemsController < ApplicationController
             cart_item = CartItem.find(items.cart_item_id)
             event = Event.find(cart_item.event_id)
             total_price += (event.price * cart_item.quantity)
-            cart.push({"cart_item_id" => cart_item.id, "event_id" => event.id, "event_name" => event.name, "event_image" => event.image, "quantity" => cart_item.quantity, "price" => event.price })
+            cart.push({"cart_item_id" => cart_item.id, "event_id" => event.id, "event_name" => event.name, "event_image" => event.image, "quantity" => cart_item.quantity, "event_price" => event.price, "event_stock" => event.stock })
         end
         render json: {cart: cart, total_price: total_price}, status: :ok
     end
@@ -41,16 +41,35 @@ class Api::CartItemsController < ApplicationController
     # フロントから new_quantity を受け取り、更新
     def change_quantity
         cart_item = CartItem.find(params[:cart_item_id])
-        cart_item.update(quantity: params[:new_quantity])
-        render plain: "OK!!!"
+        old_quantity = cart_item.quantity
+        if cart_item.update(quantity: params[:new_quantity])
+            event = Event.find(cart_item.event_id)
+            old = event.stock
+            if event.update(stock: old + (old_quantity - params[:new_quantity]))
+                puts event.stock
+                render json: {status: 'changed stock'}, status: :ok
+            else
+                render json: {error: 'failed to change stock'}, status: :internal_server_error
+            end
+        else
+            render json: {error: 'failed to change quantity'}, status: :internal_server_error
+        end
     end
 
     # フロントから指示されたアイテムを削除
     def delete
         cart_item = CartItem.find(params[:cart_item_id])
         if cart_item
+            event = Event.find(cart_item.event_id)
+            old = event.stock
+            event.update(stock: old + cart_item.quantity)
             if cart_item.destroy
-                redirect_to controller: :events, action: :deleted
+                user_cart_item = UserCartItem.find_by(cart_item_id: params[:cart_item_id])
+                if user_cart_item.destroy
+                    render json: {status: 'cart_item destroyed'}, status: :ok
+                else
+                    render json: {error: 'failed to delete user_cart_item'}, status: :internal_server_error
+                end
             else
                 render json: {error: 'failed to delete cart item'}, status: :internal_server_error
             end

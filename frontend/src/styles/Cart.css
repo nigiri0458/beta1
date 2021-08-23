@@ -35,6 +35,10 @@
     transition: all 0.2s;
 }
 
+.cart-page-purchase-message{
+    margin-bottom: 200px;
+}
+
 /***************************************************/
 @media screen and (max-width: 480px) {
     .cart-page-cart-item-wrapper{

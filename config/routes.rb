@@ -21,8 +21,6 @@ Rails.application.routes.draw do
     get 'events', to: 'events#index'
     get 'events/:event_id', to: 'events#show'
     post 'events/create', to: 'events#create'
-    post 'added_to_cart', to: 'events#added'
-    post 'deleted_from_cart', to: 'events#deleted'
 
     # CARTS
     get 'users/:user_id/cart', to: 'carts#index'
@@ -42,11 +40,9 @@ Rails.application.routes.draw do
     
     
     # ORDERS
-    post 'order_histories/:order_id/isPurchased', to: 'orders#is_purchased'
     post 'orders/create', to: 'orders#create'
 
     #ORDER_CART_ITEMS
-    post 'order_cart_items/create', to: 'order_cart_items#create'
   end
   
 end

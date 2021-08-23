@@ -15,6 +15,7 @@ export const EventDetails = ({match}) => {
     const [event, setEvent] = useState({});
     const [quantity, setQuantity] = useState(1);
     const [eventAdded, setEventAdded] = useState(false);
+    const [stock, setStock] = useState(0);
 
     const handleAddToCart = () => {
         createCartItem(event.id, Number(quantity))
@@ -31,13 +32,20 @@ export const EventDetails = ({match}) => {
         .then(data => {
             window.scrollTo(0, 0);
             setEvent(Object.assign({},data.event));
-            console.log(data);
-            console.log(event);
+            if(data.event.stock >= 10){
+                setStock(10);
+            }else{
+                setStock(data.event.stock);
+            }
             }
         )
+        .catch((e) => {
+            console.log(e);
+            history.push('/top');
+        });
     }, [])
 
-    let selects = [...Array(10).keys()].map(i => 10-i)
+    let selects = [...Array(stock).keys()].map(i => stock-i);
 
     return(
         <div className="event-details-page-wrapper">
@@ -53,11 +61,16 @@ export const EventDetails = ({match}) => {
                 loginState === 'true' ?
                 <div className="event-details-page-add-to-cart">
                     <p className="event-details-page-quantity">個数 Quantity</p>
+                    {
+                        stock?
                     <select className="event-details-page-select" defaultValue="1" onChange={(e) => setQuantity(e.target.value)}>
-                        {selects.map((e) => {
-                            return <option value={e.toString()}>{e}</option>
-                        })}
+                        {selects.map((e) => 
+                            <option value={e.toString()}>{e}</option>
+                        )}
                     </select>
+                    :
+                    null
+                    }
                     {
                         eventAdded === false ?
                         <div className="event-details-page-button" onClick={() => handleAddToCart()}>

@@ -34,17 +34,4 @@ class Api::EventsController < ApplicationController
     end
   end
 
-  def added
-    event = Event.find(params[:event_id])
-    oldquantity = event.stock
-    event.update(stock: oldquantity - params[:quantity])
-  end
-
-  def deleted
-    event = Event.find(params[:event_id])
-    oldquantity = event.stock
-    event.update(stock: oldquantity + params[:quantity])
-  end  
-  
-
 end

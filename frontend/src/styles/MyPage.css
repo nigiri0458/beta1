@@ -4,6 +4,7 @@
 
 .mypage-wrapper{
     padding-top: 220px;
+    margin-bottom: 200px;
 }
 
 .mypage-title{
@@ -207,6 +208,10 @@
 
     .mypage-email2{
         margin-bottom: 10px;
+    }
+
+    .mypage-edit-form{
+        position: initial;
     }
 
     .mypage-edit-button3{

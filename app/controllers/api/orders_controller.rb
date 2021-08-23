@@ -7,19 +7,4 @@ class Api::OrdersController < ApplicationController
         order.update(isPurchased: true)
     end
 
-    # カートの購入ボタンが押された時に注文を作る
-    def create
-        @@order = nil
-        order = Order.new(
-            user_id: @@user.id,
-            isPurchased: false
-        )
-        if order.save
-            @@order = order
-            redirect_to controller: :order_cart_items, action: :create
-        else
-            render json: {error: 'erro in orders_create'}, status: :internal_server_error
-        end
-    end
-
 end

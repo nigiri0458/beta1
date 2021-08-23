@@ -9,22 +9,28 @@ export const CartItem = (props) => {
     
     const [targetQuantity, setTargetQuantity] = useState()
     const [changed, setchanged] = useState(false);
+    const [changeError, setChangeError] = useState(false);
 
     useEffect(() => {
         setTargetQuantity(item.quantity);
     }, [])
 
     const handlechangeQuantity = (cart_item_id, newQuantity) => {
-        newQuantity = Number(newQuantity)
-        changeCartItemQuantity(cart_item_id, newQuantity)
-        .then(() => {
-            props.itemQuantity();
-        })
-        .catch((e) => {
-            console.log(e)
-        });
-        setchanged(true);
-        setTargetQuantity(newQuantity);
+        if(newQuantity <= item.event_stock){
+            setChangeError(false);
+            newQuantity = Number(newQuantity)
+            changeCartItemQuantity(cart_item_id, newQuantity)
+            .then(() => {
+                props.itemQuantity();
+                setchanged(true);
+                setTargetQuantity(newQuantity);
+            })
+            .catch((e) => {
+                console.log(e)
+            });
+        }else{
+            setChangeError(true);
+        }
     }
 
     const handleSubmit = () => {
@@ -42,7 +48,6 @@ export const CartItem = (props) => {
     }
 
     let selects = [...Array(10).keys()].map(i => 10-i);
-
 
     return(
         <div>
@@ -63,6 +68,14 @@ export const CartItem = (props) => {
                                 return <option value={e.toString()} key={e}>{e}</option>
                             })}
                         </select>
+                        {
+                            changeError ?
+                            <div className="cart-item-quantity-change-error">
+                                <p className="cart-item-quantity-change-error-message">在庫がありません。<br/>{item.event_stock}以下の値を選択してください。</p>
+                            </div>
+                            :
+                            null
+                        }
                     </div>
                     {
                         changed ? 
@@ -77,7 +90,7 @@ export const CartItem = (props) => {
                             <div className="cart-item-delete">
                                 <button className="cart-item-delete-button" onClick={() => handleDelete(item.cart_item_id)}>削除<br/>Delete</button>
                             </div>
-                            <p className="cart-item-total-price"> {Number(item.price) * Number(item.quantity)} 円</p>
+                            <p className="cart-item-total-price"> {Number(item.event_price) * Number(item.quantity)} 円</p>
                         </div>
                     }
                 </div>
