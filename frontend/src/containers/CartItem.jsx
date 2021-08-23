@@ -12,23 +12,23 @@ export const CartItem = (props) => {
 
     useEffect(() => {
         setTargetQuantity(item.quantity);
-        const price = Number(item.price) * Number(item.quantity);
-        props.addPrice(price);
-    }, [changed])
+    }, [])
 
     const handlechangeQuantity = (cart_item_id, newQuantity) => {
         newQuantity = Number(newQuantity)
         changeCartItemQuantity(cart_item_id, newQuantity)
-        .then()
+        .then(() => {
+            props.itemQuantity();
+        })
         .catch((e) => {
             console.log(e)
-        })
-        setchanged(true)
-        setTargetQuantity(newQuantity)
+        });
+        setchanged(true);
+        setTargetQuantity(newQuantity);
     }
 
     const handleSubmit = () => {
-        setchanged(false)
+        setchanged(false);
     }
 
     const handleDelete = (cart_item_id) => {
@@ -38,10 +38,10 @@ export const CartItem = (props) => {
         })
         .catch((e) => {
             console.log(e);
-        })
+        });
     }
 
-    let selects = [...Array(10).keys()].map(i => 10-i)
+    let selects = [...Array(10).keys()].map(i => 10-i);
 
 
     return(

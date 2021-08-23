@@ -20,6 +20,7 @@ export const Cart = () => {
                         cart: data.cart
                     }
                 });
+                setTotalPrice(data.total_price);
             }
         )
         .catch((e) => {
@@ -32,9 +33,9 @@ export const Cart = () => {
         setStateCount(count + 1);
     }
 
-    const addPrice = (price) => {
-        const currentPrice = totalPrice;
-        setTotalPrice(currentPrice + price);
+    const handleQuantity = () => {
+        const count = stateCount;
+        setStateCount(count + 1);
     }
 
     const handlePurchase = () => {
@@ -63,7 +64,7 @@ export const Cart = () => {
                                 key={item.cart_item_id}
                                 item={item}
                                 itemDelete={handleDelete}
-                                addPrice={addPrice}
+                                itemQuantity={handleQuantity}
                             />
                         </div>
                     )

@@ -4,12 +4,14 @@ class Api::CartItemsController < ApplicationController
     def show
         user_cart_items = UserCartItem.where(user_id: @@user.id)
         cart = []
+        total_price = 0
         for items in user_cart_items do
             cart_item = CartItem.find(items.cart_item_id)
             event = Event.find(cart_item.event_id)
+            total_price += (event.price * cart_item.quantity)
             cart.push({"cart_item_id" => cart_item.id, "event_id" => event.id, "event_name" => event.name, "event_image" => event.image, "quantity" => cart_item.quantity, "price" => event.price })
         end
-        render json: {cart: cart}, status: :ok
+        render json: {cart: cart, total_price: total_price}, status: :ok
     end
 
     # フロントから event_id と　quantity を受けとり、CartItemを作成
