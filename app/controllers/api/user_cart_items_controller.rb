@@ -18,22 +18,14 @@ class Api::UserCartItemsController < ApplicationController
                 )
                 if order_cart_item.save!
                     cart_item = CartItem.find(item.cart_item_id)
-                    if cart_item
-                        if cart_item.destroy
-                            user_cart_reference = UserCartItem.find(item.id)
-                            if user_cart_reference.destroy
-                                render json: {status: 'cart_item destroyed'}, status: :ok
-                            else
-                                render json: {error: 'failed to delete user_cart_item'}, status: :internal_server_error
-                            end
-                        else
-                            render json: {error: 'failed to delete cart item'}, status: :internal_server_error
-                        end
+                    user_cart_reference = UserCartItem.find(item.id)
+                    if user_cart_reference.destroy!
+                        puts "user_cart_item destroyed"
                     else
-                        render json: {error: 'failed to find cart item'}, status: :internal_server_error
+                        puts "user_cart_item destroy failed"
                     end
                 else
-                    render json: {error: 'failed to save an order_cart_item'}, status: :internal_server_error
+                    puts "order_cart_item save failed"
                 end
             end
         else
