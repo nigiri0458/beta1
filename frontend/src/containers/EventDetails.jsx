@@ -65,7 +65,7 @@ export const EventDetails = ({match}) => {
                         stock?
                     <select className="event-details-page-select" defaultValue="1" onChange={(e) => setQuantity(e.target.value)}>
                         {selects.map((e) => 
-                            <option value={e.toString()}>{e}</option>
+                            <option value={e.toString()} key={e}>{e}</option>
                         )}
                     </select>
                     :
