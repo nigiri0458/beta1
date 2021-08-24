@@ -202,12 +202,25 @@
         margin-bottom: 50px;
     }
 
+    .mypage-username{
+        opacity: 0.6;
+    }
+
     .mypage-username2{
         margin-bottom: 10px;
+        font-size: 22px;
+    }
+
+    .mypage-email{
+        opacity: 0.6;
     }
 
     .mypage-email2{
+        display: block;
+        width: 100%;
         margin-bottom: 10px;
+        font-size: 22px;
+        text-align: center;
     }
 
     .mypage-edit-form{

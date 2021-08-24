@@ -28,6 +28,7 @@ class Api::UserCartItemsController < ApplicationController
                     puts "order_cart_item save failed"
                 end
             end
+            UserMailer.with(user: @@user).purchase_mail.deliver_later
         else
             render json: {error: 'failed to save order'}, status: :internal_server_error
         end

@@ -17,6 +17,7 @@ export const Signup = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [email, setEmail] = useState('');
+    const [signupFailed, setSignupFailed] = useState(false);
 
     const handleSubmit = () => {
         if(!(username==="") && !(password==="")){
@@ -27,7 +28,10 @@ export const Signup = () => {
                     localStorage.setItem("loginState", "true");
                     dispatch(login());
                 })
-                .catch((e) => console.error(e))
+                .catch((e) => {
+                    console.error(e);
+                    setSignupFailed(true);
+                })
             }else{
                 
             }
@@ -85,6 +89,15 @@ export const Signup = () => {
                 <div className="signup-form-submit">
                     <Button variant="contained" onClick={() => handleSubmit()}>新規登録 SIGNUP</Button>
                 </div>
+
+                {
+                    signupFailed ?
+                    <div>
+                        <p className="signup-error-message">新規登録に失敗しました。<br/>同一のユーザー名・メールアドレスをもったユーザーが存在するか、<br/>パスワードが適切ではありません。</p>
+                    </div>
+                    :
+                    <div></div>
+                }
             </div>
         </div>
     )

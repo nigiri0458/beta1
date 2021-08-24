@@ -27,6 +27,13 @@
   margin: 0 auto;
 }
 
+.signup-error-message{
+  margin-top: 10px;
+  font-size: 15px;
+  color: rgb(255, 0, 0);
+  margin-bottom: 200px;
+}
+
 /***********************************/
 @media screen and (max-width: 480px) {
   .signup-form{
